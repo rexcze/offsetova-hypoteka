@@ -16,10 +16,7 @@ describe.each(cases)('invariants 1, 2: $name', ({ input }) => {
       // Initial liquid of D is reduced by the up-front prepayment.
       let prev = input.savings.initial
       if (id === 'D' && input.prepayment.initial) {
-        prev -= Math.min(
-          input.loan.principal,
-          Math.max(0, input.savings.initial - input.prepayment.reserve),
-        )
+        prev -= Math.min(input.loan.principal, Math.max(0, input.savings.initial - input.prepayment.reserve))
       }
       for (const r of rows) {
         const expected =

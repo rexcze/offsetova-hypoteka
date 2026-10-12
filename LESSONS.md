@@ -31,3 +31,7 @@ Co dělat: `.prettierignore` vylučuje `docs`, `reference` a `*.md`. Při zaklá
 **Záporné likvidní peníze se z platných vstupů vyvolat nedají.**
 Rozpočet je každý měsíc aspoň tak velký jako největší splátka, rezerva scénáře D se nesplácí a úvodní splátka D nepřesáhne úspory nad rezervou. Pokus vyrobit `NEGATIVE_LIQUID` vstupem (nulové úspory, vysoká sazba po fixaci, nulová rezerva) selhal, kontrola `negativeLiquidMonth` slouží jako pojistka.
 Co dělat: varování testovat na upraveném výsledku simulace, ne hledáním vstupu. Pokud se v budoucnu přidají výdaje nebo poplatky (backlog), tohle znovu ověřit.
+
+**Prettier přepisuje escapy `\u00a0` na skutečné nezlomitelné mezery, ESLint je pak odmítne.**
+Po `prettier --write` hlásil `no-irregular-whitespace` chyby v `format.ts` a v jeho testu, kde byly původně zápisy `\u00a0` a `\u202f` v regulárním výrazu.
+Co dělat: po formátování zkontrolovat `npm run lint`; pokud se to stane, escapy vrátit. Nezlomitelné mezery v kódu psát vždy jako escape.

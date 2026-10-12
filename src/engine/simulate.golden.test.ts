@@ -50,10 +50,9 @@ describe.each(cases)('golden: $name', ({ name, input, expected }) => {
       for (const [month, fields] of Object.entries(exp.checkpoints)) {
         const row = result.scenarios[id].rows[Number(month) - 1] as unknown as Record<string, number>
         for (const [field, value] of Object.entries(fields)) {
-          expect(
-            Math.abs(row[field]! - value),
-            `${name} ${id} month ${month} ${field}`,
-          ).toBeLessThanOrEqual(tolerance)
+          expect(Math.abs(row[field]! - value), `${name} ${id} month ${month} ${field}`).toBeLessThanOrEqual(
+            tolerance,
+          )
         }
       }
     })

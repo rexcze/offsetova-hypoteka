@@ -19,7 +19,7 @@ Kalkulačka offsetové hypotéky, která porovná offset s klasickou hypotékou,
 - [x] [03 – Jádro: typy, validace a pomocné funkce](03-jadro-typy-a-pomocne-funkce.md)
 - [x] [04 – Jádro: měsíční simulace](04-jadro-simulace.md)
 - [x] [05 – Jádro: analýza výsledků](05-jadro-analyza.md)
-- [ ] [06 – UI: formulář](06-ui-formular.md)
+- [x] [06 – UI: formulář](06-ui-formular.md)
 - [ ] [07 – UI: výsledky a vysvětlení](07-ui-vysledky.md)
 - [ ] [08 – UI: grafy](08-ui-grafy.md)
 - [ ] [09 – UI: splátkový kalendář](09-ui-splatkovy-kalendar.md)
