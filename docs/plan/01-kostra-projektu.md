@@ -20,7 +20,7 @@ Prázdná aplikace Vite + React + TypeScript, která se sestaví, otestuje a zob
 - [ ] `index.html`: `lang="cs"`, titulek „Kalkulačka offsetové hypotéky“, meta description, viewport.
 - [ ] `App.tsx` zobrazí jen nadpis a větu „Připravujeme“. Smaž ukázkový obsah Vite (logo, počítadlo, jejich CSS a obrázky).
 - [ ] `src/styles.css`: barvy jako CSS proměnné na `:root`, tmavý režim přes `prefers-color-scheme`, systémové písmo, explicitní pozadí `body`.
-- [ ] Do `.gitignore` přidej `node_modules`, `dist`, `coverage` a `.DS_Store`.
+- [ ] Do existujícího `.gitignore` (už obsahuje `__pycache__/`) přidej `node_modules`, `dist`, `coverage` a `.DS_Store`.
 - [ ] Jeden test `src/engine/smoke.test.ts` (`expect(1 + 1).toBe(2)`), ať `npm test` něco spouští. V kroku 03 ho smaž.
 - [ ] Do `README.md` napiš krátce, co projekt je, a příkazy `npm install`, `npm run dev`, `npm run check`.
 
