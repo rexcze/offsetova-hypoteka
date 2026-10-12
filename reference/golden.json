@@ -1,0 +1,1664 @@
+{
+  "tolerance": 0.01,
+  "cases": [
+    {
+      "name": "zaklad",
+      "description": "Výchozí příklad: 4 mil., fixace 5 let, úspory 300 tis., bez vkladů.",
+      "input": {
+        "loan": {
+          "principal": 4000000,
+          "termYears": 30,
+          "fixationYears": 5,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0519,
+          "rateAfterFixation": null
+        },
+        "offset": {
+          "mode": "shortenTerm",
+          "cap": null
+        },
+        "savings": {
+          "initial": 300000,
+          "monthlyDeposit": 0,
+          "depositGrowth": 0,
+          "currentAccountRate": 0,
+          "accounts": [
+            {
+              "name": "Spořicí účet",
+              "tiers": [
+                {
+                  "upTo": 300000,
+                  "rate": 0.035
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.02
+                }
+              ]
+            }
+          ]
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0,
+          "feeRate": 0.01,
+          "mode": "shortenTerm"
+        },
+        "tax": {
+          "savingsInterestTax": 0.15,
+          "deductMortgageInterest": true,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 5,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 21939.73181967694,
+        "budgetLast": 21939.73181967694,
+        "ranking": [
+          "D",
+          "C",
+          "B",
+          "A"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": -3210782.6434194734,
+              "netWorthReal": -2837864.005968522,
+              "debt": 3667380.784263792,
+              "liquid": 456598.14084431855,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 300734.969014072,
+                "netWorth": -3694360.2681803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 331319.6281688637,
+                "netWorth": -3608485.9985795533,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 456598.14084431855,
+                "netWorth": -3210782.6434194734,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": -3169156.5338473036,
+              "netWorthReal": -2801072.590546656,
+              "debt": 3581656.5338473036,
+              "liquid": 412500.0,
+              "interestPaid": 898040.4430279203,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3994062.768180323,
+                "liquid": 300000.0,
+                "netWorth": -3694062.768180323,
+                "payment": 21939.73181967694
+              },
+              "12": {
+                "debt": 3927033.762803464,
+                "liquid": 322500.0,
+                "netWorth": -3604533.762803464,
+                "payment": 21939.73181967694
+              },
+              "60": {
+                "debt": 3581656.5338473036,
+                "liquid": 412500.0,
+                "netWorth": -3169156.5338473036,
+                "payment": 21939.73181967694
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": -3158424.5583277238,
+              "netWorthReal": -2791587.0879691546,
+              "debt": 3667380.784263792,
+              "liquid": 508956.22593606834,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 52358.08509174958,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 301478.719014072,
+                "netWorth": -3693616.5181803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 340383.54337802914,
+                "netWorth": -3599422.083370388,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 508956.22593606834,
+                "netWorth": -3158424.5583277238,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": -3124464.0364562254,
+              "netWorthReal": -2761570.9351035743,
+              "debt": 3224464.0364562254,
+              "liquid": 100000.0,
+              "interestPaid": 868032.9384958596,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 16560.421378938532,
+              "prepaymentFees": 1875.4285199213762,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3795340.4753346755,
+                "liquid": 102043.12382101892,
+                "netWorth": -3693297.351513657,
+                "payment": 20144.524665324694
+              },
+              "12": {
+                "debt": 3695929.632412962,
+                "liquid": 100000.0,
+                "netWorth": -3595929.632412962,
+                "payment": 20144.524665324694
+              },
+              "60": {
+                "debt": 3224464.0364562254,
+                "liquid": 100000.0,
+                "netWorth": -3124464.0364562254,
+                "payment": 20144.524665324694
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "pravidelne-sporeni",
+      "description": "Jako základ, navíc vklad 5 000 Kč měsíčně.",
+      "input": {
+        "loan": {
+          "principal": 4000000,
+          "termYears": 30,
+          "fixationYears": 5,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0519,
+          "rateAfterFixation": null
+        },
+        "offset": {
+          "mode": "shortenTerm",
+          "cap": null
+        },
+        "savings": {
+          "initial": 300000,
+          "monthlyDeposit": 5000,
+          "depositGrowth": 0,
+          "currentAccountRate": 0,
+          "accounts": [
+            {
+              "name": "Spořicí účet",
+              "tiers": [
+                {
+                  "upTo": 300000,
+                  "rate": 0.035
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.02
+                }
+              ]
+            }
+          ]
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0,
+          "feeRate": 0.01,
+          "mode": "shortenTerm"
+        },
+        "tax": {
+          "savingsInterestTax": 0.15,
+          "deductMortgageInterest": true,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 5,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 26939.73181967694,
+        "budgetLast": 26939.73181967694,
+        "ranking": [
+          "D",
+          "B",
+          "C",
+          "A"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": -2910782.6434194734,
+              "netWorthReal": -2572707.7196856663,
+              "debt": 3667380.784263792,
+              "liquid": 756598.1408443186,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 305734.969014072,
+                "netWorth": -3689360.2681803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 391319.6281688637,
+                "netWorth": -3548485.9985795533,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 756598.1408443186,
+                "netWorth": -2910782.6434194734,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": -2827472.551845428,
+              "netWorthReal": -2499073.738046805,
+              "debt": 3539972.551845428,
+              "liquid": 712500.0,
+              "interestPaid": 856356.4610260451,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3994062.768180323,
+                "liquid": 305000.0,
+                "netWorth": -3689062.768180323,
+                "payment": 21939.73181967694
+              },
+              "12": {
+                "debt": 3925585.734991316,
+                "liquid": 382500.0,
+                "netWorth": -3543085.734991316,
+                "payment": 21939.73181967694
+              },
+              "60": {
+                "debt": 3539972.551845428,
+                "liquid": 712500.0,
+                "netWorth": -2827472.551845428,
+                "payment": 21939.73181967694
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": -2845536.626549903,
+              "netWorthReal": -2515039.7479260536,
+              "debt": 3667380.784263792,
+              "liquid": 821844.1577138891,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 65246.01686957075,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 306478.719014072,
+                "netWorth": -3688616.5181803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 400853.25806974364,
+                "netWorth": -3538952.368678673,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 821844.1577138891,
+                "netWorth": -2845536.626549903,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": -2791215.8207785143,
+              "netWorthReal": -2467028.070838608,
+              "debt": 2891215.8207785143,
+              "liquid": 100000.0,
+              "interestPaid": 836370.6978433637,
+              "taxRefund": 112370.26411059643,
+              "savingsInterestNet": 20685.040165131333,
+              "prepaymentFees": 4284.33639149518,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3795340.4753346755,
+                "liquid": 107043.12382101892,
+                "netWorth": -3688297.351513657,
+                "payment": 20144.524665324694
+              },
+              "12": {
+                "debt": 3635706.935623617,
+                "liquid": 100000.0,
+                "netWorth": -3535706.935623617,
+                "payment": 20144.524665324694
+              },
+              "60": {
+                "debt": 2891215.8207785143,
+                "liquid": 100000.0,
+                "netWorth": -2791215.8207785143,
+                "payment": 20144.524665324694
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "refixace",
+      "description": "Horizont 10 let, po fixaci klasická sazba 5,5 % (offset 5,8 %), vklad 5 000 Kč rostoucí o 3 % ročně.",
+      "input": {
+        "loan": {
+          "principal": 4000000,
+          "termYears": 30,
+          "fixationYears": 5,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0519,
+          "rateAfterFixation": 0.055
+        },
+        "offset": {
+          "mode": "shortenTerm",
+          "cap": null
+        },
+        "savings": {
+          "initial": 300000,
+          "monthlyDeposit": 5000,
+          "depositGrowth": 0.03,
+          "currentAccountRate": 0,
+          "accounts": [
+            {
+              "name": "Spořicí účet",
+              "tiers": [
+                {
+                  "upTo": 300000,
+                  "rate": 0.035
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.02
+                }
+              ]
+            }
+          ]
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0,
+          "feeRate": 0.01,
+          "mode": "shortenTerm"
+        },
+        "tax": {
+          "savingsInterestTax": 0.15,
+          "deductMortgageInterest": true,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 10,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 26939.73181967694,
+        "budgetLast": 29044.792609644148,
+        "ranking": [
+          "D",
+          "B",
+          "C",
+          "A"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": -2016995.8662606662,
+              "netWorthReal": -1575673.9470102312,
+              "debt": 3273926.765793229,
+              "liquid": 1256930.8995325628,
+              "interestPaid": 1897468.1355594,
+              "taxRefund": 225000.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 305734.969014072,
+                "netWorth": -3689360.2681803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 391319.6281688637,
+                "netWorth": -3548485.9985795533,
+                "payment": 21204.762805604943
+              },
+              "120": {
+                "debt": 3273926.765793229,
+                "liquid": 1256930.8995325628,
+                "netWorth": -2016995.8662606662,
+                "payment": 22520.926690497923
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": -1649053.6089201004,
+              "netWorthReal": -1288238.043648425,
+              "debt": 2856342.3633286674,
+              "liquid": 1207288.754408567,
+              "interestPaid": 1514805.9257946284,
+              "taxRefund": 210280.0475757899,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3994062.768180323,
+                "liquid": 305000.0,
+                "netWorth": -3689062.768180323,
+                "payment": 21939.73181967694
+              },
+              "12": {
+                "debt": 3925585.734991316,
+                "liquid": 382500.0,
+                "netWorth": -3543085.734991316,
+                "payment": 21939.73181967694
+              },
+              "120": {
+                "debt": 2856342.3633286674,
+                "liquid": 1207288.754408567,
+                "netWorth": -1649053.6089201004,
+                "payment": 22367.99422142235
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": -1837397.2594846084,
+              "netWorthReal": -1435371.8024446077,
+              "debt": 3273926.765793229,
+              "liquid": 1436529.5063086206,
+              "interestPaid": 1897468.1355594,
+              "taxRefund": 225000.0,
+              "savingsInterestNet": 179598.60677605675,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 306478.719014072,
+                "netWorth": -3688616.5181803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 400853.25806974364,
+                "netWorth": -3538952.368678673,
+                "payment": 21204.762805604943
+              },
+              "120": {
+                "debt": 3273926.765793229,
+                "liquid": 1436529.5063086206,
+                "netWorth": -1837397.2594846084,
+                "payment": 22520.926690497923
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": -1594644.007443458,
+              "netWorthReal": -1245733.3499363384,
+              "debt": 1694644.007443458,
+              "liquid": 100000.0,
+              "interestPaid": 1493021.5822606413,
+              "taxRefund": 209938.00919350592,
+              "savingsInterestNet": 45127.64078944556,
+              "prepaymentFees": 12160.344464505184,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3795340.4753346755,
+                "liquid": 107043.12382101892,
+                "netWorth": -3688297.351513657,
+                "payment": 20144.524665324694
+              },
+              "12": {
+                "debt": 3635706.935623617,
+                "liquid": 100000.0,
+                "netWorth": -3535706.935623617,
+                "payment": 20144.524665324694
+              },
+              "120": {
+                "debt": 1694644.007443458,
+                "liquid": 100000.0,
+                "netWorth": -1594644.007443458,
+                "payment": 17634.559153085873
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "maly-uver-strop-offsetu",
+      "description": "Úvěr 1,5 mil. (úroky pod stropem odpočtu), úspory 600 tis., offset snižuje splátku a započítá max. 400 tis.",
+      "input": {
+        "loan": {
+          "principal": 1500000,
+          "termYears": 30,
+          "fixationYears": 5,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0519,
+          "rateAfterFixation": null
+        },
+        "offset": {
+          "mode": "lowerPayment",
+          "cap": 400000
+        },
+        "savings": {
+          "initial": 600000,
+          "monthlyDeposit": 0,
+          "depositGrowth": 0,
+          "currentAccountRate": 0,
+          "accounts": [
+            {
+              "name": "Spořicí účet",
+              "tiers": [
+                {
+                  "upTo": 300000,
+                  "rate": 0.035
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.02
+                }
+              ]
+            }
+          ]
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0.25,
+          "feeRate": 0.01,
+          "mode": "lowerPayment"
+        },
+        "tax": {
+          "savingsInterestTax": 0.15,
+          "deductMortgageInterest": true,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 5,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 8227.399432378852,
+        "budgetLast": 8227.399432378852,
+        "ranking": [
+          "D",
+          "B",
+          "C",
+          "A"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": -705874.7476985493,
+              "netWorthReal": -623890.4222686491,
+              "debt": 1375267.7940989211,
+              "liquid": 669393.0464003718,
+              "interestPaid": 352374.9572250325,
+              "taxRefund": 52856.243583754884,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 1498160.7139478982,
+                "liquid": 600275.613380277,
+                "netWorth": -897885.1005676213,
+                "payment": 7951.786052101853
+              },
+              "12": {
+                "debt": 1477427.1100306564,
+                "liquid": 614234.6419617052,
+                "netWorth": -863192.4680689513,
+                "payment": 7951.786052101853
+              },
+              "60": {
+                "debt": 1375267.7940989211,
+                "liquid": 669393.0464003718,
+                "netWorth": -705874.7476985493,
+                "payment": 7951.786052101853
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": -595173.3025538257,
+              "netWorthReal": -526046.4753329153,
+              "debt": 1381100.8467323983,
+              "liquid": 785927.5441785726,
+              "interestPaid": 270944.8126751294,
+              "taxRefund": 40641.72190126941,
+              "savingsInterestNet": 41485.822277302774,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": 1,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 1498260.1005676212,
+                "liquid": 602225.8333333334,
+                "netWorth": -896034.2672342878,
+                "payment": 6497.399432378852
+              },
+              "12": {
+                "debt": 1478617.3222577688,
+                "liquid": 635565.1458762111,
+                "netWorth": -843052.1763815577,
+                "payment": 6497.399432378853
+              },
+              "60": {
+                "debt": 1381100.8467323983,
+                "liquid": 785927.5441785726,
+                "netWorth": -595173.3025538257,
+                "payment": 6497.399432378852
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": -630152.2406163117,
+              "netWorthReal": -556962.7597154713,
+              "debt": 1375267.7940989211,
+              "liquid": 745115.5534826095,
+              "interestPaid": 352374.9572250325,
+              "taxRefund": 52856.243583754884,
+              "savingsInterestNet": 75722.50708223801,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 1498160.7139478982,
+                "liquid": 601444.363380277,
+                "netWorth": -896716.3505676213,
+                "payment": 7951.786052101853
+              },
+              "12": {
+                "debt": 1477427.1100306564,
+                "liquid": 628395.3297016831,
+                "netWorth": -849031.7803289733,
+                "payment": 7951.786052101853
+              },
+              "60": {
+                "debt": 1375267.7940989211,
+                "liquid": 745115.5534826095,
+                "netWorth": -630152.2406163117,
+                "payment": 7951.786052101853
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": -568418.9045953688,
+              "netWorthReal": -502399.48598492186,
+              "debt": 668418.9045953688,
+              "liquid": 100000.0,
+              "interestPaid": 211759.09881593287,
+              "taxRefund": 31763.864822389933,
+              "savingsInterestNet": 17932.363455443545,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 998773.8092985988,
+                "liquid": 103174.12539764428,
+                "netWorth": -895599.6839009546,
+                "payment": 5301.190701401236
+              },
+              "12": {
+                "debt": 939053.3653599909,
+                "liquid": 100000.0,
+                "netWorth": -839053.3653599909,
+                "payment": 5301.190701401236
+              },
+              "60": {
+                "debt": 668418.9045953688,
+                "liquid": 100000.0,
+                "netWorth": -568418.9045953688,
+                "payment": 4196.8492503089155
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "vice-uctu",
+      "description": "Dva spořicí účty s pásmy, úspory 800 tis., vklad 10 000 Kč rostoucí o 3 %, běžný účet 0,1 %.",
+      "input": {
+        "loan": {
+          "principal": 4000000,
+          "termYears": 30,
+          "fixationYears": 5,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0519,
+          "rateAfterFixation": null
+        },
+        "offset": {
+          "mode": "shortenTerm",
+          "cap": null
+        },
+        "savings": {
+          "initial": 800000,
+          "monthlyDeposit": 10000,
+          "depositGrowth": 0.03,
+          "currentAccountRate": 0.001,
+          "accounts": [
+            {
+              "name": "Účet 1",
+              "tiers": [
+                {
+                  "upTo": 250000,
+                  "rate": 0.04
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.005
+                }
+              ]
+            },
+            {
+              "name": "Účet 2",
+              "tiers": [
+                {
+                  "upTo": 100000,
+                  "rate": 0.05
+                },
+                {
+                  "upTo": 500000,
+                  "rate": 0.03
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.01
+                }
+              ]
+            }
+          ]
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0,
+          "feeRate": 0.01,
+          "mode": "shortenTerm"
+        },
+        "tax": {
+          "savingsInterestTax": 0.15,
+          "deductMortgageInterest": true,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 5,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 31939.73181967694,
+        "budgetLast": 33194.81991967694,
+        "ranking": [
+          "D",
+          "B",
+          "C",
+          "A"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": -2068694.4483011044,
+              "netWorthReal": -1828424.4578849361,
+              "debt": 3667380.784263792,
+              "liquid": 1598686.3359626876,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 4991.89791836322,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 810791.6356807386,
+                "netWorth": -3184303.601513657,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 952050.090979587,
+                "netWorth": -2987755.53576883,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 1598686.3359626876,
+                "netWorth": -2068694.4483011044,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": -1812993.8321170094,
+              "netWorthReal": -1602422.3719262283,
+              "debt": 3348143.5095836734,
+              "liquid": 1535149.677466664,
+              "interestPaid": 664527.4187642917,
+              "taxRefund": 98053.38026666299,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3991900.268180323,
+                "liquid": 810000.0,
+                "netWorth": -3181900.268180323,
+                "payment": 21939.73181967694
+              },
+              "12": {
+                "debt": 3897561.4351504142,
+                "liquid": 942500.0,
+                "netWorth": -2955061.4351504142,
+                "payment": 21939.73181967694
+              },
+              "60": {
+                "debt": 3348143.5095836734,
+                "liquid": 1535149.677466664,
+                "netWorth": -1812993.8321170094,
+                "payment": 21939.73181967694
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": -1938294.546281003,
+              "netWorthReal": -1713169.9453806086,
+              "debt": 3667380.784263792,
+              "liquid": 1729086.237982789,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 112500.0,
+              "savingsInterestNet": 135391.79993846503,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 812682.8856807386,
+                "netWorth": -3182412.351513657,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 975288.9552697404,
+                "netWorth": -2964516.6714786766,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 1729086.237982789,
+                "netWorth": -1938294.546281003,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": -1788443.6766939163,
+              "netWorthReal": -1580723.6117940473,
+              "debt": 1888443.6766939163,
+              "liquid": 100000.0,
+              "interestPaid": 668235.8895243204,
+              "taxRefund": 98695.36435220807,
+              "savingsInterestNet": 35803.07868661166,
+              "prepaymentFees": 8186.436589031409,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3295953.570685376,
+                "liquid": 114799.96917171952,
+                "netWorth": -3181153.6015136563,
+                "payment": 17493.929314624078
+              },
+              "12": {
+                "debt": 3049454.9588239957,
+                "liquid": 100000.0,
+                "netWorth": -2949454.9588239957,
+                "payment": 17493.929314624078
+              },
+              "60": {
+                "debt": 1888443.6766939163,
+                "liquid": 100000.0,
+                "netWorth": -1788443.6766939163,
+                "payment": 17493.929314624078
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "uspory-nad-dluh",
+      "description": "Úvěr 1 mil., úspory 1,5 mil.: offset nese nulový úrok, scénář D splatí úvěr hned.",
+      "input": {
+        "loan": {
+          "principal": 1000000,
+          "termYears": 30,
+          "fixationYears": 5,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0519,
+          "rateAfterFixation": null
+        },
+        "offset": {
+          "mode": "shortenTerm",
+          "cap": null
+        },
+        "savings": {
+          "initial": 1500000,
+          "monthlyDeposit": 0,
+          "depositGrowth": 0,
+          "currentAccountRate": 0,
+          "accounts": [
+            {
+              "name": "Spořicí účet",
+              "tiers": [
+                {
+                  "upTo": 300000,
+                  "rate": 0.035
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.02
+                }
+              ]
+            }
+          ]
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0,
+          "feeRate": 0.01,
+          "mode": "shortenTerm"
+        },
+        "tax": {
+          "savingsInterestTax": 0.15,
+          "deductMortgageInterest": true,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 5,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 5484.932954919235,
+        "budgetLast": 5484.932954919235,
+        "ranking": [
+          "B",
+          "D",
+          "C",
+          "A"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": 629416.8348676333,
+              "netWorthReal": 556312.7681913693,
+              "debt": 916845.196065948,
+              "liquid": 1546262.0309335813,
+              "interestPaid": 234916.63815002172,
+              "taxRefund": 35237.49572250326,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 998773.8092985988,
+                "liquid": 1500183.742253518,
+                "netWorth": 501409.9329549192,
+                "payment": 5301.190701401236
+              },
+              "12": {
+                "debt": 984951.4066871043,
+                "liquid": 1509489.7613078034,
+                "netWorth": 524538.3546206992,
+                "payment": 5301.190701401236
+              },
+              "60": {
+                "debt": 916845.196065948,
+                "liquid": 1546262.0309335813,
+                "netWorth": 629416.8348676333,
+                "payment": 5301.190701401236
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": 907506.2616269696,
+              "netWorthReal": 802103.3003714815,
+              "debt": 670904.0227048425,
+              "liquid": 1578410.284331812,
+              "interestPaid": 0.0,
+              "taxRefund": 0.0,
+              "savingsInterestNet": 78410.28433181201,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": 1,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 994515.0670450807,
+                "liquid": 1501027.0833333333,
+                "netWorth": 506512.01628825255,
+                "payment": 5484.932954919235
+              },
+              "12": {
+                "debt": 934180.8045409685,
+                "liquid": 1512936.757944655,
+                "netWorth": 578755.9534036864,
+                "payment": 5484.932954919235
+              },
+              "60": {
+                "debt": 670904.0227048425,
+                "liquid": 1578410.284331812,
+                "netWorth": 907506.2616269696,
+                "payment": 5484.932954919235
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": 784064.1135434919,
+              "netWorthReal": 692998.4285161708,
+              "debt": 916845.196065948,
+              "liquid": 1700909.30960944,
+              "interestPaid": 234916.63815002172,
+              "taxRefund": 35237.49572250326,
+              "savingsInterestNet": 154647.2786758583,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 998773.8092985988,
+                "liquid": 1502627.492253518,
+                "netWorth": 503853.6829549192,
+                "payment": 5301.190701401236
+              },
+              "12": {
+                "debt": 984951.4066871043,
+                "liquid": 1539061.595650572,
+                "netWorth": 554110.1889634678,
+                "payment": 5301.190701401236
+              },
+              "60": {
+                "debt": 916845.196065948,
+                "liquid": 1700909.30960944,
+                "netWorth": 784064.1135434919,
+                "payment": 5301.190701401236
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": 907506.2616269694,
+              "netWorthReal": 802103.3003714813,
+              "debt": 0.0,
+              "liquid": 907506.2616269694,
+              "interestPaid": 0.0,
+              "taxRefund": 0.0,
+              "savingsInterestNet": 78410.28433181203,
+              "prepaymentFees": 0.0,
+              "payoffMonth": 0,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 0.0,
+                "liquid": 506512.01628825255,
+                "netWorth": 506512.01628825255,
+                "payment": 0.0
+              },
+              "12": {
+                "debt": 0.0,
+                "liquid": 578755.9534036865,
+                "netWorth": 578755.9534036865,
+                "payment": 0.0
+              },
+              "60": {
+                "debt": 0.0,
+                "liquid": 907506.2616269694,
+                "netWorth": 907506.2616269694,
+                "payment": 0.0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "bez-dani-bez-prirazky",
+      "description": "Přirážka 0, spořicí sazby 0, bez daní: offset musí být aspoň tak dobrý jako klasika.",
+      "input": {
+        "loan": {
+          "principal": 4000000,
+          "termYears": 30,
+          "fixationYears": 5,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0489,
+          "rateAfterFixation": null
+        },
+        "offset": {
+          "mode": "shortenTerm",
+          "cap": null
+        },
+        "savings": {
+          "initial": 300000,
+          "monthlyDeposit": 3000,
+          "depositGrowth": 0,
+          "currentAccountRate": 0,
+          "accounts": []
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0,
+          "feeRate": 0.01,
+          "mode": "shortenTerm"
+        },
+        "tax": {
+          "savingsInterestTax": 0,
+          "deductMortgageInterest": false,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 5,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 24204.762805604943,
+        "budgetLast": 24204.762805604943,
+        "ranking": [
+          "B",
+          "D",
+          "A",
+          "C"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": -3187380.784263792,
+              "netWorthReal": -2817180.1724157385,
+              "debt": 3667380.784263792,
+              "liquid": 480000.0,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 0.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 303000.0,
+                "netWorth": -3692095.237194395,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 336000.0,
+                "netWorth": -3603805.626748417,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 480000.0,
+                "netWorth": -3187380.784263792,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": -3081029.599892312,
+              "netWorthReal": -2723181.2221166557,
+              "debt": 3561029.599892312,
+              "liquid": 480000.0,
+              "interestPaid": 833315.3682286096,
+              "taxRefund": 0.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3993872.737194395,
+                "liquid": 303000.0,
+                "netWorth": -3690872.737194395,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3923984.417216255,
+                "liquid": 336000.0,
+                "netWorth": -3587984.417216255,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3561029.599892312,
+                "liquid": 480000.0,
+                "netWorth": -3081029.599892312,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": -3187380.784263792,
+              "netWorthReal": -2817180.1724157385,
+              "debt": 3667380.784263792,
+              "liquid": 480000.0,
+              "interestPaid": 939666.5526000869,
+              "taxRefund": 0.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 303000.0,
+                "netWorth": -3692095.237194395,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 336000.0,
+                "netWorth": -3603805.626748417,
+                "payment": 21204.762805604943
+              },
+              "60": {
+                "debt": 3667380.784263792,
+                "liquid": 480000.0,
+                "netWorth": -3187380.784263792,
+                "payment": 21204.762805604943
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": -3116964.530099632,
+              "netWorthReal": -2754942.4642553446,
+              "debt": 3216964.530099632,
+              "liquid": 100000.0,
+              "interestPaid": 867320.6803098546,
+              "taxRefund": 0.0,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 1929.6181260737794,
+              "payoffMonth": null,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3795340.4753346755,
+                "liquid": 104060.23814028024,
+                "netWorth": -3691280.237194395,
+                "payment": 20144.524665324694
+              },
+              "12": {
+                "debt": 3694574.892259152,
+                "liquid": 100000.0,
+                "netWorth": -3594574.892259152,
+                "payment": 20144.524665324694
+              },
+              "60": {
+                "debt": 3216964.530099632,
+                "liquid": 100000.0,
+                "netWorth": -3116964.530099632,
+                "payment": 20144.524665324694
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "cely-uver",
+      "description": "Horizont 30 let, fixace 30 let: úvěr se splatí ve všech scénářích.",
+      "input": {
+        "loan": {
+          "principal": 4000000,
+          "termYears": 30,
+          "fixationYears": 30,
+          "classicRate": 0.0489,
+          "offsetRate": 0.0519,
+          "rateAfterFixation": null
+        },
+        "offset": {
+          "mode": "shortenTerm",
+          "cap": null
+        },
+        "savings": {
+          "initial": 300000,
+          "monthlyDeposit": 2000,
+          "depositGrowth": 0,
+          "currentAccountRate": 0,
+          "accounts": [
+            {
+              "name": "Spořicí účet",
+              "tiers": [
+                {
+                  "upTo": 300000,
+                  "rate": 0.035
+                },
+                {
+                  "upTo": null,
+                  "rate": 0.02
+                }
+              ]
+            }
+          ]
+        },
+        "prepayment": {
+          "reserve": 100000,
+          "initial": true,
+          "annual": true,
+          "freeAnnualShare": 0,
+          "feeRate": 0.01,
+          "mode": "shortenTerm"
+        },
+        "tax": {
+          "savingsInterestTax": 0.15,
+          "deductMortgageInterest": true,
+          "incomeTaxRate": 0.15,
+          "deductionCap": 150000
+        },
+        "horizonYears": 30,
+        "inflation": 0.025
+      },
+      "expected": {
+        "budgetFirst": 23939.73181967694,
+        "budgetLast": 23939.73181967694,
+        "ranking": [
+          "D",
+          "B",
+          "C",
+          "A"
+        ],
+        "scenarios": {
+          "A": {
+            "summary": {
+              "netWorth": 1785350.5261598919,
+              "netWorthReal": 851152.8038307269,
+              "debt": 0.0,
+              "liquid": 1785350.5261598919,
+              "interestPaid": 3633714.6100178757,
+              "taxRefund": 500761.68109405576,
+              "savingsInterestNet": 0.0,
+              "prepaymentFees": 0.0,
+              "payoffMonth": 360,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 302734.969014072,
+                "netWorth": -3692360.2681803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 355319.6281688637,
+                "netWorth": -3584485.9985795533,
+                "payment": 21204.762805604943
+              },
+              "360": {
+                "debt": 0.0,
+                "liquid": 1785350.5261598919,
+                "netWorth": 1785350.5261598919,
+                "payment": 21204.762805702925
+              }
+            }
+          },
+          "B": {
+            "summary": {
+              "netWorth": 3425666.5925855343,
+              "netWorthReal": 1633161.489883976,
+              "debt": 0.0,
+              "liquid": 3425666.5925855343,
+              "interestPaid": 2131670.3477844996,
+              "taxRefund": 299407.8590891642,
+              "savingsInterestNet": 339625.6261971622,
+              "prepaymentFees": 0.0,
+              "payoffMonth": 280,
+              "offsetSaturatedMonth": 233,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3994062.768180323,
+                "liquid": 302000.0,
+                "netWorth": -3692062.768180323,
+                "payment": 21939.73181967694
+              },
+              "12": {
+                "debt": 3926454.551678605,
+                "liquid": 346500.0,
+                "netWorth": -3579954.551678605,
+                "payment": 21939.73181967694
+              },
+              "360": {
+                "debt": 0.0,
+                "liquid": 3425666.5925855343,
+                "netWorth": 3425666.5925855343,
+                "payment": 0.0
+              }
+            }
+          },
+          "C": {
+            "summary": {
+              "netWorth": 2614596.832064052,
+              "netWorthReal": 1246489.9143838773,
+              "debt": 0.0,
+              "liquid": 2614596.832064052,
+              "interestPaid": 3633714.6100178757,
+              "taxRefund": 500761.68109405576,
+              "savingsInterestNet": 829246.305904137,
+              "prepaymentFees": 0.0,
+              "payoffMonth": 360,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3995095.237194395,
+                "liquid": 303478.719014072,
+                "netWorth": -3691616.5181803233,
+                "payment": 21204.762805604943
+              },
+              "12": {
+                "debt": 3939805.626748417,
+                "liquid": 364571.42925471487,
+                "netWorth": -3575234.197493702,
+                "payment": 21204.762805604943
+              },
+              "360": {
+                "debt": 0.0,
+                "liquid": 2614596.832064052,
+                "netWorth": 2614596.832064052,
+                "payment": 21204.762805702925
+              }
+            }
+          },
+          "D": {
+            "summary": {
+              "netWorth": 3578530.5717440774,
+              "netWorthReal": 1706038.273775468,
+              "debt": 0.0,
+              "liquid": 3578530.5717440774,
+              "interestPaid": 2056840.660311258,
+              "taxRefund": 292720.89271145937,
+              "savingsInterestNet": 436497.1298787318,
+              "prepaymentFees": 12150.2456185691,
+              "payoffMonth": 231,
+              "offsetSaturatedMonth": null,
+              "negativeLiquidMonth": null
+            },
+            "checkpoints": {
+              "1": {
+                "debt": 3795340.4753346755,
+                "liquid": 104043.12382101892,
+                "netWorth": -3691297.351513657,
+                "payment": 20144.524665324694
+              },
+              "12": {
+                "debt": 3671840.5536972242,
+                "liquid": 100000.0,
+                "netWorth": -3571840.5536972242,
+                "payment": 20144.524665324694
+              },
+              "360": {
+                "debt": 0.0,
+                "liquid": 3578530.5717440774,
+                "netWorth": 3578530.5717440774,
+                "payment": 0.0
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
