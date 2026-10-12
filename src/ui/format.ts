@@ -52,3 +52,8 @@ export function formatCompactCzk(x: number): string {
     return `${sign}${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(a / 1000)}${NBSP}tis.`
   return `${sign}${Math.round(a)}`
 }
+
+/** After-phrase: "po 1 roce", "po 5 letech". */
+export function formatAfterYears(n: number): string {
+  return `po ${n} ${n === 1 ? 'roce' : 'letech'}`
+}

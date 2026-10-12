@@ -3,7 +3,7 @@ import { crossovers, marginalRates, offsetVsBest, toReal, warnings } from '../..
 import type { Inputs, ScenarioId, SimulationResult } from '../../engine/types.ts'
 import { AdvantageChart } from '../charts/AdvantageChart.tsx'
 import { BreakEvenGridView } from '../charts/BreakEvenGridView.tsx'
-import { formatCzk, formatPercent, formatYears } from '../format.ts'
+import { formatAfterYears, formatCzk, formatPercent, formatYears } from '../format.ts'
 import { SCENARIO_LABELS } from '../labels.ts'
 import { warningText } from './warningText.ts'
 
@@ -98,7 +98,7 @@ export function Results({ inputs, result, showReal, hasErrors }: Props) {
       )}
 
       <h2>
-        Srovnání scénářů po {formatYears(inputs.horizonYears)}
+        Srovnání scénářů {formatAfterYears(inputs.horizonYears)}
         {showReal ? ' (v dnešních korunách)' : ''}
       </h2>
       <div className="table-wrap">

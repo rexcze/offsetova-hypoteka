@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import {
+  formatAfterYears,
   formatCompactCzk,
   formatCzk,
   formatInputNumber,
@@ -71,4 +72,12 @@ describe('formatCompactCzk', () => {
     [-120_000, '−120 tis.'],
     [1_500_000, '1,5 mil.'],
   ])('%d → %s', (x, text) => expect(plain(formatCompactCzk(x))).toBe(text))
+})
+
+describe('formatAfterYears', () => {
+  test.each([
+    [1, 'po 1 roce'],
+    [2, 'po 2 letech'],
+    [5, 'po 5 letech'],
+  ])('%i → %s', (n, text) => expect(formatAfterYears(n)).toBe(text))
 })
