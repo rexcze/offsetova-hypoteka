@@ -26,6 +26,17 @@ Kalkulačka offsetové hypotéky, která porovná offset s klasickou hypotékou,
 - [x] [10 – Sdílení odkazem](10-sdileni-odkazem.md)
 - [x] [11 – Dokončení MVP](11-dokonceni-mvp.md)
 
+## Kroky redesignu (po MVP)
+
+Vizuální vzor je [náhled](../design/nahled.html), styl schválil uživatel. Stack: Tailwind CSS + shadcn/ui. Výpočty (`src/engine/`) se nemění.
+
+- [ ] [12 – Vizuální základ](12-redesign-vizualni-zaklad.md)
+- [ ] [13 – Stav formuláře pro jednoduché zadávání](13-redesign-model-formulare.md)
+- [ ] [14 – Nový formulář](14-redesign-formular.md)
+- [ ] [15 – Nové výsledky](15-redesign-vysledky.md)
+- [ ] [16 – Nové grafy](16-redesign-grafy.md)
+- [ ] [17 – Dokončení redesignu](17-redesign-dokonceni.md)
+
 Další verze jsou v [backlogu](backlog.md). Na ty se sahá až po dokončení MVP a se souhlasem uživatele.
 
 ## Struktura projektu (cílový stav)

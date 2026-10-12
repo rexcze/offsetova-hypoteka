@@ -7,6 +7,7 @@ Veřejná webová kalkulačka. Porovná offsetovou hypotéku s klasickou hypoté
 - **Hosting:** jen GitHub Pages. Statická aplikace, žádný server, žádné API.
 - **Soukromí:** žádná data neopouštějí prohlížeč. Žádné cookies, analytika ani externí požadavky za běhu (fonty a knihovny jsou součástí buildu).
 - **Bez předvoleb bank:** uživatel zadává sazby a podmínky sám.
+- **UI stack (redesign):** Tailwind CSS + shadcn/ui, vzor je `docs/design/nahled.html`. Sazbu offsetu zadává uživatel celou (přirážka se dopočítává), „Kolik měsíčně spoříte“ je název vkladu.
 - **Čistě veřejný nástroj:** žádné formuláře pro poptávku ani affiliate odkazy.
 
 ## Kde co je
