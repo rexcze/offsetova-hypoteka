@@ -27,3 +27,7 @@ Co dělat: kalkulačka nemá předvolby bank (rozhodnutí uživatele). Výchozí
 **Prettier přeformátoval dokumenty a referenční data.**
 První `prettier --write .` přepsal Markdown ve `docs/` a `reference/golden.json`, které se nesmějí měnit mimo specifikaci. Šablona Vite navíc nově dodává oxlint místo ESLintu, plán ale počítá s ESLintem.
 Co dělat: `.prettierignore` vylučuje `docs`, `reference` a `*.md`. Při zakládání projektu porovnat výchozí nástroje šablony s plánem.
+
+**Záporné likvidní peníze se z platných vstupů vyvolat nedají.**
+Rozpočet je každý měsíc aspoň tak velký jako největší splátka, rezerva scénáře D se nesplácí a úvodní splátka D nepřesáhne úspory nad rezervou. Pokus vyrobit `NEGATIVE_LIQUID` vstupem (nulové úspory, vysoká sazba po fixaci, nulová rezerva) selhal, kontrola `negativeLiquidMonth` slouží jako pojistka.
+Co dělat: varování testovat na upraveném výsledku simulace, ne hledáním vstupu. Pokud se v budoucnu přidají výdaje nebo poplatky (backlog), tohle znovu ověřit.
