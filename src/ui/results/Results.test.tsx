@@ -67,7 +67,11 @@ test('the scenario cards are in ranking order, the winner is marked and the numb
 test('the real-terms switch is stated in the headings and converts the verdict once', () => {
   render(<App />)
   expect(screen.queryByRole('heading', { level: 2, name: /v dnešních korunách/ })).toBeNull()
-  fireEvent.click(screen.getByLabelText('V dnešních korunách'))
+  // There is one switch in the header of the cards and one in the chart card, bound to the same state.
+  const [cardsSwitch, chartSwitch] = screen.getAllByLabelText('V dnešních korunách')
+  expect(cardsSwitch).toBeTruthy()
+  fireEvent.click(cardsSwitch!)
+  expect(chartSwitch!.getAttribute('aria-checked')).toBe('true')
   expect(screen.getAllByRole('heading', { level: 2, name: /v dnešních korunách/ })).toHaveLength(3)
 
   // The lead of the winner is converted exactly once (a double conversion would show a smaller number).

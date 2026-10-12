@@ -72,3 +72,11 @@ Co dělat: funkce `summarize` vrací rozdíl už ve zvolených korunách a řík
 `getByText('+86 319 Kč')` s textem z `formatCzk` nenašlo prvek, protože ve formátované částce jsou nezlomitelné mezery a hledaný text je v testu převeden na obyčejné.
 Co dělat: v testech použít porovnání funkcí (`withText`), které obě strany normalizuje.
 
+**Tečkovaná čára se zaoblenými konci splyne v plnou, pokud je mezera kratší než tloušťka čáry.**
+Při přechodu na tloušťku 2,5 px se zaoblenými konci by vzor `2 3` pro scénář D vypadal skoro plně: konec čárky přesahuje o poloviční tloušťku na obou stranách. Čáry se pak lišily jen barvou.
+Co dělat: tečky kreslit jako dash `0.1` s mezerou aspoň 6 (kulaté konce tvoří tečku), čárkovanou jako `9 6`. Styly jsou v `SCENARIO_DASH` a test hlídá, že se styly čar a legendy liší.
+
+**Barva s procentuální sytostí potřebuje strop daný nejhorším režimem.**
+Text na buňkách mřížky s 55% sytostí oranžové měl v tmavém režimu kontrast jen 4,19:1. Při 45 % je to nejméně 5,4:1 v obou režimech.
+Co dělat: strop sytosti počítat skriptem pro světlý i tmavý režim a pro obě barvy (výhra, prohra).
+

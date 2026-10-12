@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { cn } from '@/lib/utils'
 import type { ScenarioId } from '../../engine/types.ts'
-import { formatCompactCzk } from '../format.ts'
+import { SCENARIO_DASH, SCENARIO_DOT, SCENARIO_STROKE, SCENARIO_FILL } from '../labels.ts'
 import { niceTicks, yearTicks } from './scale.ts'
 
 export interface Series {
@@ -23,16 +24,17 @@ interface Props {
   formatValue: (value: number) => string
 }
 
-/** Line style per scenario, so lines differ by more than colour. */
-const DASH: Record<ScenarioId, string | undefined> = {
-  A: '1 4',
-  B: undefined,
-  C: '7 4',
-  D: '2 3',
+const MARGIN = { left: 52, right: 14, top: 34, bottom: 28 }
+
+const thousands = new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 })
+
+/** Axis label in thousands of CZK with a real minus sign. */
+const axisLabel = (value: number) => {
+  const k = Math.round(value / 1000)
+  return k === 0 ? '0' : `${k < 0 ? '−' : ''}${thousands.format(Math.abs(k))}`
 }
 
-const MARGIN = { left: 58, right: 14, top: 34, bottom: 28 }
-
+/** Line chart of the advantage over time; theme colours, one line style per scenario. */
 export function LineChart({ series, months, markers, ariaLabel, formatValue }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(640)
@@ -65,27 +67,20 @@ export function LineChart({ series, months, markers, ariaLabel, formatValue }: P
   const flip = hover !== null && x(hover) > width / 2
 
   return (
-    <div className="chart" ref={wrapRef}>
-      <ul className="legend">
-        {series.map((s) => (
-          <li key={s.id} className={`sc-${s.id}`}>
-            <svg width="30" height="10" aria-hidden="true">
-              <line x1="1" y1="5" x2="29" y2="5" className="line" strokeDasharray={DASH[s.id]} />
-            </svg>{' '}
-            {s.label}
-          </li>
-        ))}
-      </ul>
+    <div className="relative" ref={wrapRef}>
       <svg
         role="img"
         aria-label={ariaLabel}
         width={width}
         height={height}
-        className="chart-svg"
+        className="block max-w-full touch-pan-y"
         onPointerMove={(e) => onMove(e.clientX, e.currentTarget.getBoundingClientRect().left)}
         onPointerDown={(e) => onMove(e.clientX, e.currentTarget.getBoundingClientRect().left)}
         onPointerLeave={() => setHover(null)}
       >
+        <text x={0} y={MARGIN.top - 14} className="fill-muted-foreground text-[11px]">
+          tis. Kč
+        </text>
         {yTicks.map((t) => (
           <g key={t}>
             <line
@@ -93,19 +88,37 @@ export function LineChart({ series, months, markers, ariaLabel, formatValue }: P
               x2={width - MARGIN.right}
               y1={y(t)}
               y2={y(t)}
-              className={t === 0 ? 'zero' : 'grid'}
+              className={t === 0 ? 'stroke-muted-foreground' : 'stroke-border'}
+              strokeWidth={t === 0 ? 1.5 : 1}
             />
-            <text x={MARGIN.left - 6} y={y(t)} className="tick" textAnchor="end" dominantBaseline="middle">
-              {formatCompactCzk(t)}
+            <text
+              x={MARGIN.left - 6}
+              y={y(t)}
+              className="fill-muted-foreground text-[11px]"
+              textAnchor="end"
+              dominantBaseline="middle"
+            >
+              {axisLabel(t)}
             </text>
           </g>
         ))}
         {yearTicks(months).map((m) => (
-          <text key={m} x={x(m)} y={height - 8} className="tick" textAnchor="middle">
+          <text
+            key={m}
+            x={x(m)}
+            y={height - 8}
+            className="fill-muted-foreground text-[11px]"
+            textAnchor="middle"
+          >
             {m / 12}
           </text>
         ))}
-        <text x={MARGIN.left - 6} y={height - 8} className="tick" textAnchor="end">
+        <text
+          x={MARGIN.left - 6}
+          y={height - 8}
+          className="fill-muted-foreground text-[11px]"
+          textAnchor="end"
+        >
           roky
         </text>
         {markers.map((mk, i) => {
@@ -117,12 +130,13 @@ export function LineChart({ series, months, markers, ariaLabel, formatValue }: P
                 x2={x(mk.month)}
                 y1={MARGIN.top - 4}
                 y2={MARGIN.top + plotH}
-                className="marker"
+                className="stroke-muted-foreground"
+                strokeDasharray="4 3"
               />
               <text
                 x={x(mk.month) + (near ? -4 : 4)}
                 y={12 + (i % 2) * 12}
-                className="marker-label"
+                className="fill-foreground text-[11px]"
                 textAnchor={near ? 'end' : 'start'}
               >
                 {mk.label}
@@ -133,8 +147,12 @@ export function LineChart({ series, months, markers, ariaLabel, formatValue }: P
         {series.map((s) => (
           <path
             key={s.id}
-            className={`line sc-${s.id}`}
-            strokeDasharray={DASH[s.id]}
+            data-scenario={s.id}
+            className={SCENARIO_STROKE[s.id]}
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeDasharray={SCENARIO_DASH[s.id]}
             fill="none"
             d={s.values
               .map((v, i) => `${i === 0 ? 'M' : 'L'}${x(i + 1).toFixed(1)},${y(v).toFixed(1)}`)
@@ -143,14 +161,21 @@ export function LineChart({ series, months, markers, ariaLabel, formatValue }: P
         ))}
         {hover !== null && (
           <g>
-            <line x1={x(hover)} x2={x(hover)} y1={MARGIN.top} y2={MARGIN.top + plotH} className="crosshair" />
+            <line
+              x1={x(hover)}
+              x2={x(hover)}
+              y1={MARGIN.top}
+              y2={MARGIN.top + plotH}
+              className="stroke-muted-foreground"
+            />
             {series.map((s) => (
               <circle
                 key={s.id}
                 cx={x(hover)}
                 cy={y(s.values[hover - 1]!)}
                 r="4"
-                className={`dot sc-${s.id}`}
+                strokeWidth={1.5}
+                className={cn('stroke-card', SCENARIO_FILL[s.id])}
               />
             ))}
           </g>
@@ -158,20 +183,41 @@ export function LineChart({ series, months, markers, ariaLabel, formatValue }: P
       </svg>
       {hover !== null && (
         <div
-          className="tooltip"
           aria-hidden="true"
+          className="pointer-events-none absolute top-10 z-10 w-max max-w-64 rounded-md border bg-popover px-2.5 py-2 text-xs leading-snug text-popover-foreground shadow-md"
           style={{ left: x(hover), transform: flip ? 'translateX(calc(-100% - 10px))' : 'translateX(10px)' }}
         >
           <strong>
             Měsíc {hover} ({Math.ceil(hover / 12)}. rok)
           </strong>
           {series.map((s) => (
-            <div key={s.id} className={`sc-${s.id}`}>
-              <span className="swatch" /> {s.label}: {formatValue(s.values[hover - 1]!)}
+            <div key={s.id} className="flex items-center gap-1.5">
+              <span className={cn('size-2 rounded-full', SCENARIO_DOT[s.id])} />
+              {s.label}: {formatValue(s.values[hover - 1]!)}
             </div>
           ))}
         </div>
       )}
+      <ul aria-label="Legenda grafu" className="mt-2 flex flex-wrap gap-2 text-xs">
+        {series.map((s) => (
+          <li key={s.id} className="flex items-center gap-2 rounded-full border px-2.5 py-1">
+            <svg width="28" height="8" aria-hidden="true">
+              <line
+                x1="2"
+                y1="4"
+                x2="26"
+                y2="4"
+                data-legend-line={s.id}
+                className={SCENARIO_STROKE[s.id]}
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeDasharray={SCENARIO_DASH[s.id]}
+              />
+            </svg>
+            {s.label}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

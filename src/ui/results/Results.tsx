@@ -3,8 +3,6 @@ import { useMemo } from 'react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Alert } from '@/components/ui/alert'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Switch } from '@/components/ui/switch'
 import { cn } from '@/lib/utils'
 import { crossovers, marginalRates, offsetVsBest, warnings } from '../../engine/analysis.ts'
 import type { Inputs, SimulationResult } from '../../engine/types.ts'
@@ -13,6 +11,7 @@ import { BreakEvenGridView } from '../charts/BreakEvenGridView.tsx'
 import { formatAfterYears, formatCzk, formatPercent, formatYears } from '../format.ts'
 import { SCENARIO_LABELS } from '../labels.ts'
 import { Calendar } from './Calendar.tsx'
+import { RealToggle } from './RealToggle.tsx'
 import { ScenarioCards } from './ScenarioCards.tsx'
 import { ScenarioTable } from './ScenarioTable.tsx'
 import { VERDICT_ID } from './StickySummary.tsx'
@@ -128,17 +127,17 @@ export function Results({ inputs, result, summary, showReal, onShowRealChange, h
             Srovnání scénářů {formatAfterYears(inputs.horizonYears)}
             {showReal ? ' (v dnešních korunách)' : ''}
           </h2>
-          <div className="flex items-center gap-2">
-            <Switch id="f-showReal" checked={showReal} onCheckedChange={onShowRealChange} />
-            <Label htmlFor="f-showReal" className="text-muted-foreground">
-              V dnešních korunách
-            </Label>
-          </div>
+          <RealToggle id="f-showReal" checked={showReal} onChange={onShowRealChange} />
         </div>
         <ScenarioCards inputs={inputs} result={result} summary={summary} />
       </div>
 
-      <AdvantageChart inputs={inputs} result={result} showReal={showReal} />
+      <AdvantageChart
+        inputs={inputs}
+        result={result}
+        showReal={showReal}
+        onShowRealChange={onShowRealChange}
+      />
       <BreakEvenGridView inputs={inputs} showReal={showReal} />
 
       <Card className="gap-0 py-5">

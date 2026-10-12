@@ -36,6 +36,10 @@
   --scenario-c: #059669; /* green */
   --scenario-d: #7c3aed; /* violet */
 
+  /* Break-even grid: the offset wins / another option wins. */
+  --result-win: #2563eb; /* blue 600 */
+  --result-lose: #d97706; /* amber 600 */
+
   color-scheme: light;
 }
 
@@ -63,6 +67,9 @@
   --scenario-b: #60a5fa;
   --scenario-c: #34d399;
   --scenario-d: #a78bfa;
+
+  --result-win: #60a5fa; /* blue 400 */
+  --result-lose: #fbbf24; /* amber 400 */
 
   color-scheme: dark;
 }
@@ -92,6 +99,8 @@
   --color-scenario-b: var(--scenario-b);
   --color-scenario-c: var(--scenario-c);
   --color-scenario-d: var(--scenario-d);
+  --color-result-win: var(--result-win);
+  --color-result-lose: var(--result-lose);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

@@ -36,3 +36,28 @@ export const SCENARIO_BADGE: Record<ScenarioId, string> = {
   C: 'bg-scenario-c/15',
   D: 'bg-scenario-d/15',
 }
+
+export const SCENARIO_STROKE: Record<ScenarioId, string> = {
+  A: 'stroke-scenario-a',
+  B: 'stroke-scenario-b',
+  C: 'stroke-scenario-c',
+  D: 'stroke-scenario-d',
+}
+
+export const SCENARIO_FILL: Record<ScenarioId, string> = {
+  A: 'fill-scenario-a',
+  B: 'fill-scenario-b',
+  C: 'fill-scenario-c',
+  D: 'fill-scenario-d',
+}
+
+/**
+ * Line style per scenario, so lines differ by more than colour: solid, dashed, dotted.
+ * Dots use a near-zero dash with round caps (a short dash plus a round cap would run together).
+ */
+export const SCENARIO_DASH: Record<ScenarioId, string | undefined> = {
+  A: '1 6',
+  B: undefined,
+  C: '9 6',
+  D: '0.1 6',
+}
