@@ -47,7 +47,7 @@ export interface Inputs {
   prepayment: {                   // jen scénář D
     reserve: number;              // rezerva, která se nikdy nesplácí
     initial: boolean;             // úspory nad rezervu sníží úvěr hned na začátku
-    annual: boolean;              // každý rok k výročí splatit vše nad rezervu
+    annual: boolean;              // průběžně splácet vše nad rezervu (k výročí a na konci fixace)
     freeAnnualShare: number;      // podíl PŮVODNÍ jistiny, který lze ročně splatit zdarma (0–1)
     feeRate: number;              // poplatek z části nad bezplatný limit (0.01 = 1 %)
     mode: 'shortenTerm' | 'lowerPayment';
@@ -145,7 +145,7 @@ d) *Hotovost.* `liquid = liquid0 + budget_m − payment + net`. Přičti `intere
 
 e) *Konec smluvního roku* (`m % 12 == 0`): `refund = deductMortgageInterest ? min(yearInterest, deductionCap) · incomeTaxRate : 0`. `liquid += refund`, `taxRefund += refund`, `yearInterest = 0`. Zjednodušení: odpočet se počítá po smluvních letech a vratka přijde hned na konci roku.
 
-f) *Mimořádná splátka (jen D, pokud `debt > 0`).*
+f) *Mimořádná splátka (jen D, pokud `debt > 0` a `annual`).*
 - *Konec fixace* (`m == F` a `F < n`): zdarma a bez limitu. `prepay = min(liquid − reserve, debt)`, pokud je kladná.
 - *Jinak k výročí* (`annual` a `m % 12 == 0`): `avail = liquid − reserve`; pokud `avail > 0`: `free = freeAnnualShare · P`; `x = avail ≤ free ? avail : free + (avail − free) / (1 + feeRate)`; `prepay = min(x, debt)`; `fee = feeRate · max(0, prepay − free)`.
 - `debt −= prepay`, `liquid −= prepay + fee`, `prepaymentFees += fee`. Pokud `debt ≤ 1e−6`: `debt = 0`, `payoffMonth = m`. Jinak v režimu `prepayment.mode == 'lowerPayment'`: `annuity = annuity(debt, sazba, n − m)`.

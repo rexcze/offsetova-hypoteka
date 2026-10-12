@@ -6,14 +6,18 @@ Prázdná aplikace Vite + React + TypeScript, která se sestaví, otestuje a zob
 
 ## Úkoly
 
-- [ ] Založ projekt Vite se šablonou `react-ts` přímo v kořeni repa. Neruš existující soubory (`CLAUDE.md`, `LESSONS.md`, `docs/`, `reference/`).
+- [ ] Založ projekt Vite se šablonou `react-ts`. Repo **není prázdné** a `create-vite` by se v něm interaktivně ptal, jestli smazat existující soubory. Proto:
+  1. vygeneruj šablonu do dočasné složky mimo repo (`npm create vite@latest <dočasná-složka> -- --template react-ts`);
+  2. zkopíruj její obsah do kořene repa;
+  3. `.gitignore` sluč s existujícím, nepřepisuj ho;
+  4. zkontroluj, že `CLAUDE.md`, `LESSONS.md`, `docs/` a `reference/` zůstaly beze změny (`git status`).
 - [ ] TypeScript v režimu `strict`, navíc `noUncheckedIndexedAccess`.
-- [ ] Přidej Vitest (prostředí `node` pro `src/engine`, `jsdom` jen kde je potřeba pro UI).
+- [ ] Přidej Vitest (prostředí `node` pro `src/engine`, `jsdom` jen kde je potřeba pro UI) a `@vitest/coverage-v8` pro měření pokrytí.
 - [ ] Přidej ESLint (doporučená pravidla pro TS a React hooks) a Prettier (šířka řádku 110, jednoduché uvozovky).
 - [ ] Skripty v `package.json`:
   - `dev`, `build`, `preview`
-  - `test` (`vitest run`), `test:watch`
-  - `typecheck` (`tsc --noEmit -p .`)
+  - `test` (`vitest run`), `test:watch`, `coverage` (`vitest run --coverage`)
+  - `typecheck` (`tsc -b`). Kořenový `tsconfig.json` šablony je jen rozcestník na `tsconfig.app.json` a `tsconfig.node.json`, takže `tsc --noEmit -p .` by nic nezkontroloval. Ověř, že typecheck pokrývá i testy a že jde importovat `reference/golden.json` mimo `src` (`resolveJsonModule`, případně doplnit `include`).
   - `lint`
   - `check` = `typecheck && lint && test && build`
 - [ ] Ve `vite.config.ts` nastav `base: '/offsetova-hypoteka/'`. Repo je `rexcze/offsetova-hypoteka` a Pages poběží na podcestě.

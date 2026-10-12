@@ -17,7 +17,7 @@ Formulář všech vstupů v češtině. Výsledky se přepočítávají živě a
   2. **Offset:** co dělá ušetřený úrok (přepínač „Zkracuje dobu splácení“ / „Snižuje splátku“), strop započtených úspor (volitelné).
   3. **Úspory:** počáteční úspory, měsíční vklad, roční navýšení vkladu (s tlačítkem „= inflace“), sazba běžného účtu.
   4. **Spořicí účty:** seznam účtů (přidat, odebrat, max. 5), u každého název a pásma (přidat, odebrat, max. 4). Pásmo = „do X Kč: Y %“, poslední pásmo „nad“.
-  5. **Mimořádné splátky (scénář D):** rezerva, snížit úvěr hned na začátku (zaškrtávátko), splácet každý rok (zaškrtávátko), bezplatný limit (% z původní jistiny), poplatek (%), co dělá splátka (zkrácení / snížení splátky).
+  5. **Mimořádné splátky (scénář D):** rezerva, snížit úvěr hned na začátku (zaškrtávátko), splácet průběžně, tedy k výročí a na konci fixace (zaškrtávátko), bezplatný limit (% z původní jistiny), poplatek (%), co dělá splátka (zkrácení / snížení splátky).
   6. **Daně:** daň z úroků (%), uplatňuji odpočet úroků (zaškrtávátko), sazba daně z příjmu (15 / 23 %), strop odpočtu (150 000 / 300 000 Kč s vysvětlivkou podle data smlouvy).
   7. **Porovnání:** horizont (roky, výchozí = fixace; když uživatel fixaci změní a horizont neupravoval, horizont ji následuje), inflace (%), přepínač „Zobrazit v dnešních korunách“.
 - [ ] Méně častá pole (strop offsetu, daně, poplatky, sazba běžného účtu) dej do sbalitelné části „Pokročilé“, aby základní formulář byl krátký.

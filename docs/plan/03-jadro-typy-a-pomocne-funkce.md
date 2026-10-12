@@ -33,7 +33,7 @@ Základ výpočetního jádra v `src/engine/`: typy, výchozí vstupy, validace,
 
 ## Hotovo, když
 
-`npm run check` projde. Pokrytí `src/engine` (Vitest coverage) je aspoň 95 % řádků.
+`npm run check` projde. `npm run coverage` ukáže pro `src/engine` aspoň 95 % řádků.
 
 ## Mimo rozsah
 

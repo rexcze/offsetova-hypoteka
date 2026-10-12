@@ -149,9 +149,9 @@ def simulate(inp):
                 s["liquid"] += refund
                 s["taxRefund"] += refund
 
-            if sid == "D" and s["debt"] > 0:
+            if sid == "D" and s["debt"] > 0 and pre["annual"]:
                 at_fixation_end = m == F and F < n
-                if at_fixation_end or (pre["annual"] and m % 12 == 0):
+                if at_fixation_end or m % 12 == 0:
                     avail = s["liquid"] - pre["reserve"]
                     if avail > 0:
                         if at_fixation_end:
