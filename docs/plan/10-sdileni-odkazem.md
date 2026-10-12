@@ -6,16 +6,16 @@ Nastavení kalkulačky jde sdílet odkazem. Data zůstávají v části URL za `
 
 ## Úkoly
 
-- [ ] `src/ui/share.ts`:
+- [x] `src/ui/share.ts`:
   - `encodeInputs(inputs): string` a `decodeInputs(hash): Inputs | null`;
   - formát s verzí, např. `#v1=` + kompaktní JSON zakódovaný přes `encodeURIComponent` nebo base64url;
   - neznámá verze nebo poškozená data → `null` a aplikace použije výchozí hodnoty;
   - dekódovaný vstup musí projít `validate`, jinak výchozí hodnoty a nenápadná hláška.
-- [ ] Při načtení stránky se vstupy vezmou z hashe, pokud tam jsou.
-- [ ] Při změně vstupů se hash aktualizuje přes `history.replaceState`, ne `pushState`, aby se nezaplnila historie. Aktualizace s debounce kolem 300 ms.
-- [ ] Tlačítko „Zkopírovat odkaz“ (Clipboard API, se záložním řešením a potvrzením „Zkopírováno“).
-- [ ] Do UI krátká věta: „Odkaz obsahuje vaše zadání. Nikam ho neodesíláme, sdílíte ho jen vy.“
-- [ ] Žádný `localStorage` pro vstupy. Stav nese jen URL, aby bylo chování předvídatelné.
+- [x] Při načtení stránky se vstupy vezmou z hashe, pokud tam jsou.
+- [x] Při změně vstupů se hash aktualizuje přes `history.replaceState`, ne `pushState`, aby se nezaplnila historie. Aktualizace s debounce kolem 300 ms.
+- [x] Tlačítko „Zkopírovat odkaz“ (Clipboard API, se záložním řešením a potvrzením „Zkopírováno“).
+- [x] Do UI krátká věta: „Odkaz obsahuje vaše zadání. Nikam ho neodesíláme, sdílíte ho jen vy.“
+- [x] Žádný `localStorage` pro vstupy. Stav nese jen URL, aby bylo chování předvídatelné.
 
 ## Testy
 

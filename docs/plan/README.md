@@ -7,7 +7,7 @@ Kalkulačka offsetové hypotéky, která porovná offset s klasickou hypotékou,
 1. Na začátku práce si přečti [CLAUDE.md](../../CLAUDE.md), [LESSONS.md](../../LESSONS.md) a [specifikaci](../specifikace.md).
 2. Kroky dělej **po pořadí**. Každý krok má cíl, úkoly, podmínky dokončení a co do něj nepatří. Nic nad rámec kroku nepřidávej.
 3. Krok je hotový, až projdou všechny jeho podmínky dokončení a `npm run check`. Ten skript zavede krok 01.
-4. Každý krok ukonči commitem (nebo několika menšími). V tomto souboru zaškrtni hotový krok ve stejném commitu.
+4. Každý krok ukonči commitem (nebo několika menšími). Ve stejném commitu zaškrtni úkoly v souboru kroku i krok v tomto souboru. Nedokončené úkoly nech nezaškrtnuté a popiš, co zbývá.
 5. **Nepushuj**, dokud o to uživatel nepožádá. Výjimkou je krok 02, kde push a zapnutí GitHub Pages proveď až po výslovném souhlasu uživatele.
 6. Když golden test nesedí, chyba je skoro jistě v TypeScriptu. Golden data neupravuj. Pokud jsi přesvědčený, že chyba je ve specifikaci, zastav se a zeptej se uživatele.
 7. Narazíš-li na něco, co stálo čas nebo překvapilo, zapiš to do LESSONS.md (pravidla zápisu jsou v souboru).

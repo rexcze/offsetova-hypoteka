@@ -6,13 +6,13 @@ Každý push do `main` spustí kontroly a nasadí aplikaci na `https://rexcze.gi
 
 ## Úkoly
 
-- [ ] `.github/workflows/ci.yml`:
+- [x] `.github/workflows/ci.yml`:
   - spouštěč `push` do `main` a `pull_request`;
   - job `check`: `actions/checkout`, `actions/setup-node` (Node 24, cache npm), `npm ci`, `npm run check`;
   - job `deploy` (jen při `push` do `main`, závisí na `check`): `npm ci`, `npm run build`, `actions/configure-pages`, `actions/upload-pages-artifact` s `path: dist`, `actions/deploy-pages`;
   - oprávnění `contents: read`, `pages: write`, `id-token: write`; prostředí `github-pages`; `concurrency` skupina `pages`.
-- [ ] Použij aktuální hlavní verze oficiálních actions (ověř na GitHubu, nehádej).
-- [ ] Do README přidej odkaz na nasazenou aplikaci.
+- [x] Použij aktuální hlavní verze oficiálních actions (ověř na GitHubu, nehádej).
+- [x] Do README přidej odkaz na nasazenou aplikaci.
 
 ## Vyžaduje souhlas uživatele
 

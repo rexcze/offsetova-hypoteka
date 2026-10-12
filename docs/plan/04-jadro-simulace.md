@@ -10,22 +10,22 @@
 
 ## Úkoly
 
-- [ ] Implementuj `simulate` přesně podle oddílu 4.3. Doporučená struktura: stav scénáře jako objekt (`debt`, `liquid`, `rate`, `annuity`, součty, měsíce událostí, `rows`) a jedna smyčka přes měsíce, ve které se postupně zpracují všechny čtyři scénáře.
-- [ ] Na nic nevolej zaokrouhlování. Zaokrouhluje jen UI při zobrazení.
-- [ ] `ranking` podle `Math.round(netWorth * 100)` sestupně, při shodě pořadí A, B, C, D (stabilní řazení).
-- [ ] Jádro nevolá `validate`. Předpokládá validní vstup (validuje UI).
+- [x] Implementuj `simulate` přesně podle oddílu 4.3. Doporučená struktura: stav scénáře jako objekt (`debt`, `liquid`, `rate`, `annuity`, součty, měsíce událostí, `rows`) a jedna smyčka přes měsíce, ve které se postupně zpracují všechny čtyři scénáře.
+- [x] Na nic nevolej zaokrouhlování. Zaokrouhluje jen UI při zobrazení.
+- [x] `ranking` podle `Math.round(netWorth * 100)` sestupně, při shodě pořadí A, B, C, D (stabilní řazení).
+- [x] Jádro nevolá `validate`. Předpokládá validní vstup (validuje UI).
 
 ## Testy
 
-- [ ] **Golden testy** (`simulate.golden.test.ts`): pro každý případ v `reference/golden.json` porovnej:
+- [x] **Golden testy** (`simulate.golden.test.ts`): pro každý případ v `reference/golden.json` porovnej:
   - `budgets[0]` s `budgetFirst` a poslední prvek s `budgetLast`;
   - `ranking`;
   - pro každý scénář všechna pole `summary` (čísla s tolerancí `tolerance`, `null` přesně);
   - `checkpoints` (měsíce jsou klíče, 1 = první řádek).
 
   Při selhání vypiš název případu, scénář a pole.
-- [ ] **Invarianty** (`simulate.invariants.test.ts`): všech 7 bodů z oddílu 7 specifikace. Invarianty 1 a 2 ověř na všech golden případech.
-- [ ] **Hraniční případy:**
+- [x] **Invarianty** (`simulate.invariants.test.ts`): všech 7 bodů z oddílu 7 specifikace. Invarianty 1 a 2 ověř na všech golden případech.
+- [x] **Hraniční případy:**
   - horizont = splatnost (úvěr se splatí, po splacení jde celý rozpočet do likvidních peněz);
   - úspory > úvěr (B má nulový úrok od 1. měsíce, D má `payoffMonth = 0`);
   - fixace = splatnost (žádná refixace);

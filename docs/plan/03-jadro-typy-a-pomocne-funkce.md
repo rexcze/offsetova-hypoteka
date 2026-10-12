@@ -10,12 +10,12 @@ Základ výpočetního jádra v `src/engine/`: typy, výchozí vstupy, validace,
 
 ## Úkoly
 
-- [ ] `types.ts`: typy `Inputs`, `SavingsAccount`, `ScenarioId`, `MonthRow`, `ScenarioSummary`, `SimulationResult` přesně podle specifikace (oddíly 2 a 5). Názvy polí musí odpovídat `reference/golden.json`.
-- [ ] `defaults.ts`: `defaultInputs(): Inputs` podle oddílu 2.2. Musí odpovídat `input` golden případu `zaklad`, ověř to testem.
-- [ ] `validate.ts`: `validate(inputs): ValidationError[]` podle oddílu 2.1, kde `ValidationError = { path: string; message: string }`. `path` je tečková cesta, např. `savings.accounts.0.tiers.1.upTo`. Zprávy česky a srozumitelně, např. „Hranice pásma musí být vyšší než u předchozího pásma.“
-- [ ] `annuity.ts`: `annuity(principal, annualRate, months)` podle oddílu 3.1.
-- [ ] `savings.ts`: `savingsInterestGross(amount, accounts, currentAccountRate)` podle oddílu 3.2. Navíc `marginalSavingsRate(amount, accounts, currentAccountRate)`: hrubá sazba slotu, kam by padla další koruna (použije se v kroku 05). Je to první slot v pořadí podle sazby, jehož kumulativní kapacita je **ostře větší** než `amount`, takže při částce přesně na hranici pásma se bere další slot.
-- [ ] Smaž `smoke.test.ts` z kroku 01.
+- [x] `types.ts`: typy `Inputs`, `SavingsAccount`, `ScenarioId`, `MonthRow`, `ScenarioSummary`, `SimulationResult` přesně podle specifikace (oddíly 2 a 5). Názvy polí musí odpovídat `reference/golden.json`.
+- [x] `defaults.ts`: `defaultInputs(): Inputs` podle oddílu 2.2. Musí odpovídat `input` golden případu `zaklad`, ověř to testem.
+- [x] `validate.ts`: `validate(inputs): ValidationError[]` podle oddílu 2.1, kde `ValidationError = { path: string; message: string }`. `path` je tečková cesta, např. `savings.accounts.0.tiers.1.upTo`. Zprávy česky a srozumitelně, např. „Hranice pásma musí být vyšší než u předchozího pásma.“
+- [x] `annuity.ts`: `annuity(principal, annualRate, months)` podle oddílu 3.1.
+- [x] `savings.ts`: `savingsInterestGross(amount, accounts, currentAccountRate)` podle oddílu 3.2. Navíc `marginalSavingsRate(amount, accounts, currentAccountRate)`: hrubá sazba slotu, kam by padla další koruna (použije se v kroku 05). Je to první slot v pořadí podle sazby, jehož kumulativní kapacita je **ostře větší** než `amount`, takže při částce přesně na hranici pásma se bere další slot.
+- [x] Smaž `smoke.test.ts` z kroku 01.
 
 ## Testy
 

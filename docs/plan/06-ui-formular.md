@@ -6,13 +6,13 @@ Formulář všech vstupů v češtině. Výsledky se přepočítávají živě a
 
 ## Úkoly
 
-- [ ] `src/ui/format.ts`:
+- [x] `src/ui/format.ts`:
   - `formatCzk(x)` → „1 234 567 Kč“ (`Intl.NumberFormat('cs-CZ')`, bez desetinných míst);
   - `formatPercent(x, digits = 2)` → „4,89 %“;
   - `parseNumber(text)`: přijme „4,89“, „4.89“, „1 234 567“ (i s nezlomitelnou mezerou) a „1 234 567 Kč“; prázdné nebo nesmyslné → `null`.
   - Testy na všechny varianty.
-- [ ] Stav: `useReducer` nad `Inputs` v `App.tsx`. Pole formuláře drží text, převod na číslo jde přes `parseNumber`. Procenta a roky převádí UI (4,89 → 0,0489).
-- [ ] Sekce formuláře (každá jako `<fieldset>` s `<legend>`):
+- [x] Stav: `useReducer` nad `Inputs` v `App.tsx`. Pole formuláře drží text, převod na číslo jde přes `parseNumber`. Procenta a roky převádí UI (4,89 → 0,0489).
+- [x] Sekce formuláře (každá jako `<fieldset>` s `<legend>`):
   1. **Hypotéka:** výše úvěru, splatnost (roky), fixace (roky), sazba klasické hypotéky, sazba offsetové hypotéky (pod polem dopočtená přirážka v p. b.), sazba po fixaci (volitelné, prázdné = beze změny).
   2. **Offset:** co dělá ušetřený úrok (přepínač „Zkracuje dobu splácení“ / „Snižuje splátku“), strop započtených úspor (volitelné).
   3. **Úspory:** počáteční úspory, měsíční vklad, roční navýšení vkladu (s tlačítkem „= inflace“), sazba běžného účtu.
@@ -20,11 +20,11 @@ Formulář všech vstupů v češtině. Výsledky se přepočítávají živě a
   5. **Mimořádné splátky (scénář D):** rezerva, snížit úvěr hned na začátku (zaškrtávátko), splácet průběžně, tedy k výročí a na konci fixace (zaškrtávátko), bezplatný limit (% z původní jistiny), poplatek (%), co dělá splátka (zkrácení / snížení splátky).
   6. **Daně:** daň z úroků (%), uplatňuji odpočet úroků (zaškrtávátko), sazba daně z příjmu (15 / 23 %), strop odpočtu (150 000 / 300 000 Kč s vysvětlivkou podle data smlouvy).
   7. **Porovnání:** horizont (roky, výchozí = fixace; když uživatel fixaci změní a horizont neupravoval, horizont ji následuje), inflace (%), přepínač „Zobrazit v dnešních korunách“.
-- [ ] Méně častá pole (strop offsetu, daně, poplatky, sazba běžného účtu) dej do sbalitelné části „Pokročilé“, aby základní formulář byl krátký.
-- [ ] U každého odborného pole krátká nápověda (`<details>` nebo `title`/popis pod polem), např. „Přirážka: o kolik je offsetová sazba vyšší než klasická“.
-- [ ] Chyby z `validate` se zobrazují u příslušného pole (podle `path`). Výsledky se počítají jen z validních vstupů, jinak zůstane poslední platný výsledek a nad ním hláška „Opravte zvýrazněná pole“.
-- [ ] Tlačítko „Obnovit výchozí hodnoty“.
-- [ ] Rozvržení: na širší obrazovce formulář vlevo a výsledky vpravo, na mobilu pod sebou. Okraj aspoň 16 px, žádné vodorovné posouvání stránky.
+- [x] Méně častá pole (strop offsetu, daně, poplatky, sazba běžného účtu) dej do sbalitelné části „Pokročilé“, aby základní formulář byl krátký.
+- [x] U každého odborného pole krátká nápověda (`<details>` nebo `title`/popis pod polem), např. „Přirážka: o kolik je offsetová sazba vyšší než klasická“.
+- [x] Chyby z `validate` se zobrazují u příslušného pole (podle `path`). Výsledky se počítají jen z validních vstupů, jinak zůstane poslední platný výsledek a nad ním hláška „Opravte zvýrazněná pole“.
+- [x] Tlačítko „Obnovit výchozí hodnoty“.
+- [x] Rozvržení: na širší obrazovce formulář vlevo a výsledky vpravo, na mobilu pod sebou. Okraj aspoň 16 px, žádné vodorovné posouvání stránky.
 
 ## Testy
 

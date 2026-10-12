@@ -35,4 +35,5 @@ Veřejná webová kalkulačka. Porovná offsetovou hypotéku s klasickou hypoté
 
 - Commit po každém kroku plánu, zprávy česky v rozkazovacím způsobu („Přidat …“, „Opravit …“).
 - Nepushuj a neměň nastavení repa (Pages, oprávnění) bez výslovného souhlasu uživatele.
+- **Dokončený krok vždy označ jako hotový, ve stejném commitu:** zaškrtni jeho úkoly v souboru kroku (`- [x]`) a krok v `docs/plan/README.md`. Dokument je pro další sezení jediný zdroj pravdy o tom, co je hotové. Krok, který nesplníš celý, nezaškrtávej a napiš do něj, co zbývá.
 - Poučení patří do LESSONS.md ve stejném commitu jako změna, která ho přinesla.

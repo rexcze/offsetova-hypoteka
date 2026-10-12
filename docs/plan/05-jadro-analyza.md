@@ -10,14 +10,14 @@
 
 ## Úkoly
 
-- [ ] `advantageOverA(result): Record<'B' | 'C' | 'D', number[]>`: rozdíl čistého jmění proti A po měsících.
-- [ ] `crossovers(diff: number[]): number[]`: měsíce (číslované od 1), kde se znaménko změní proti poslednímu nenulovému znaménku.
-- [ ] `offsetVsBest(result): number[]`: `B − max(A, C, D)` po měsících; `offsetVsSavings(result)`: `B − C`.
-- [ ] `breakEvenGrid(inputs): { savings: number[]; surcharges: number[]; values: number[][] }` podle oddílu 6. `values[iy][ix]` patří k `surcharges[iy]` a `savings[ix]`.
-- [ ] `marginalRates(inputs, result)`: `{ offset, prepayment, savings, currentAccount, surchargeCostPerYear }` podle oddílu 6. Použij `marginalSavingsRate` z kroku 03.
-- [ ] `warnings(inputs, result): Warning[]`, kde `Warning = { code: WarningCode; params: Record<string, number | string> }`, kódy podle oddílu 6. Texty nepatří sem, dělá je UI.
-- [ ] `toReal(value, month, inflation)`: přepočet na dnešní Kč, `value / (1 + inflation)^(month/12)`.
-- [ ] Změř `breakEvenGrid` pro horizont 30 let. Pokud trvá víc než 150 ms, zapiš to do LESSONS.md a v kroku 08 ho počítej ve Web Workeru. Jinak stačí `useMemo`.
+- [x] `advantageOverA(result): Record<'B' | 'C' | 'D', number[]>`: rozdíl čistého jmění proti A po měsících.
+- [x] `crossovers(diff: number[]): number[]`: měsíce (číslované od 1), kde se znaménko změní proti poslednímu nenulovému znaménku.
+- [x] `offsetVsBest(result): number[]`: `B − max(A, C, D)` po měsících; `offsetVsSavings(result)`: `B − C`.
+- [x] `breakEvenGrid(inputs): { savings: number[]; surcharges: number[]; values: number[][] }` podle oddílu 6. `values[iy][ix]` patří k `surcharges[iy]` a `savings[ix]`.
+- [x] `marginalRates(inputs, result)`: `{ offset, prepayment, savings, currentAccount, surchargeCostPerYear }` podle oddílu 6. Použij `marginalSavingsRate` z kroku 03.
+- [x] `warnings(inputs, result): Warning[]`, kde `Warning = { code: WarningCode; params: Record<string, number | string> }`, kódy podle oddílu 6. Texty nepatří sem, dělá je UI.
+- [x] `toReal(value, month, inflation)`: přepočet na dnešní Kč, `value / (1 + inflation)^(month/12)`.
+- [x] Změř `breakEvenGrid` pro horizont 30 let. Pokud trvá víc než 150 ms, zapiš to do LESSONS.md a v kroku 08 ho počítej ve Web Workeru. Jinak stačí `useMemo`.
 
 ## Testy
 

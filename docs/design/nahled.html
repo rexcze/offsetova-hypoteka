@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Náhled vzhledu – Kalkulačka offsetové hypotéky</title>
+<!-- Jen statický náhled návrhu (Tailwind z CDN). Aplikace samotná nic z CDN nenačítá. Čísla jsou ilustrační (golden případ pravidelne-sporeni). -->
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config = { darkMode: 'class' }</script>
+<style>
+  input[type=range]{accent-color:#2563eb}
+  .dark input[type=range]{accent-color:#60a5fa}
+</style>
+</head>
+<body class="bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+<script>if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark')</script>
+
+<header class="border-b border-zinc-200 bg-white/80 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/80">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+    <div class="flex items-center gap-2 font-semibold">
+      <span class="grid h-8 w-8 place-items-center rounded-lg bg-blue-600 text-white">Kč</span>
+      Kalkulačka offsetové hypotéky
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="rounded-md border border-zinc-300 px-3 py-1.5 text-sm hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800">Zkopírovat odkaz</button>
+      <button onclick="document.documentElement.classList.toggle('dark')" class="rounded-md border border-zinc-300 px-3 py-1.5 text-sm hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800" aria-label="Přepnout tmavý režim">◐</button>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl px-4 py-6">
+  <p class="mb-6 max-w-3xl text-zinc-600 dark:text-zinc-400">
+    Vyplatí se vám offsetová hypotéka, spořicí účet, nebo mimořádné splátky? Zadejte pár čísel a hned uvidíte rozdíl v korunách.
+    Všechno se počítá ve vašem prohlížeči, nic se neodesílá.
+  </p>
+
+  <div class="grid gap-6 lg:grid-cols-[380px_1fr]">
+
+    <!-- FORMULÁŘ -->
+    <section class="space-y-4 lg:sticky lg:top-4 lg:self-start">
+      <div class="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div class="mb-4 flex items-center justify-between">
+          <h2 class="font-semibold">Základní údaje</h2>
+          <button class="text-sm text-blue-600 hover:underline dark:text-blue-400">Vyzkoušet na příkladu</button>
+        </div>
+
+        <div class="space-y-5">
+          <label class="block">
+            <span class="flex justify-between text-sm font-medium">Výše úvěru <output class="font-semibold tabular-nums" data-fmt="kc">4 000 000 Kč</output></span>
+            <input type="range" min="500000" max="12000000" step="100000" value="4000000" class="mt-2 w-full" data-bind="kc">
+          </label>
+
+          <label class="block">
+            <span class="flex justify-between text-sm font-medium">Úroková sazba hypotéky <output class="font-semibold tabular-nums" data-fmt="pct">4,89 %</output></span>
+            <input type="range" min="1" max="10" step="0.01" value="4.89" class="mt-2 w-full" data-bind="pct">
+          </label>
+
+          <div class="rounded-lg bg-zinc-50 p-3 dark:bg-zinc-800/60">
+            <label class="flex items-start gap-2 text-sm">
+              <input type="checkbox" id="diff" class="mt-1 h-4 w-4 rounded" checked onchange="document.getElementById('offrate').classList.toggle('hidden', !this.checked)">
+              <span>Banka nabízí u offsetu <b>jinou sazbu</b><br><span class="text-zinc-500 dark:text-zinc-400">Jinak počítáme se stejnou sazbou jako u klasické hypotéky.</span></span>
+            </label>
+            <label id="offrate" class="mt-3 block">
+              <span class="text-sm font-medium">Úroková sazba offsetové hypotéky</span>
+              <div class="mt-1 flex items-center gap-2">
+                <input type="text" inputmode="decimal" value="5,19" class="w-24 rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-right tabular-nums dark:border-zinc-700 dark:bg-zinc-900">
+                <span class="text-sm text-zinc-500">% p. a.</span>
+                <span class="ml-auto rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-800 dark:bg-amber-900/40 dark:text-amber-300">+0,30 p. b.</span>
+              </div>
+            </label>
+          </div>
+
+          <label class="block">
+            <span class="flex justify-between text-sm font-medium">Kolik máte úspor <output class="font-semibold tabular-nums" data-fmt="kc">300 000 Kč</output></span>
+            <input type="range" min="0" max="4000000" step="50000" value="300000" class="mt-2 w-full" data-bind="kc">
+          </label>
+
+          <label class="block">
+            <span class="flex justify-between text-sm font-medium">Kolik měsíčně spoříte <output class="font-semibold tabular-nums" data-fmt="kc">5 000 Kč</output></span>
+            <input type="range" min="0" max="50000" step="500" value="5000" class="mt-2 w-full" data-bind="kc">
+          </label>
+
+          <label class="block">
+            <span class="flex justify-between text-sm font-medium">Úrok vašeho spořicího účtu <output class="font-semibold tabular-nums" data-fmt="pct">3,50 %</output></span>
+            <input type="range" min="0" max="7" step="0.05" value="3.5" class="mt-2 w-full" data-bind="pct">
+          </label>
+
+          <div class="grid grid-cols-2 gap-3">
+            <label class="block text-sm font-medium">Fixace
+              <select class="mt-1 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"><option>5 let</option><option>3 roky</option><option>1 rok</option></select>
+            </label>
+            <label class="block text-sm font-medium">Porovnat za
+              <select class="mt-1 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"><option>5 let</option><option>10 let</option></select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <details class="group"><summary class="flex cursor-pointer items-center justify-between px-5 py-3 text-sm font-medium">Upřesnit hypotéku a offset <span class="text-zinc-400 group-open:rotate-180">⌄</span></summary><p class="px-5 pb-4 text-sm text-zinc-500">Splatnost, sazba po fixaci, strop započtených úspor, co dělá ušetřený úrok.</p></details>
+        <details class="group border-t border-zinc-200 dark:border-zinc-800"><summary class="flex cursor-pointer items-center justify-between px-5 py-3 text-sm font-medium">Upřesnit spoření <span class="text-zinc-400">⌄</span></summary><p class="px-5 pb-4 text-sm text-zinc-500">Více účtů, pásma sazeb, běžný účet, roční navýšení vkladu.</p></details>
+        <details class="group border-t border-zinc-200 dark:border-zinc-800"><summary class="flex cursor-pointer items-center justify-between px-5 py-3 text-sm font-medium">Upřesnit mimořádné splátky <span class="text-zinc-400">⌄</span></summary><p class="px-5 pb-4 text-sm text-zinc-500">Rezerva, poplatky, bezplatný limit.</p></details>
+        <details class="group border-t border-zinc-200 dark:border-zinc-800"><summary class="flex cursor-pointer items-center justify-between px-5 py-3 text-sm font-medium">Upřesnit daně a inflaci <span class="text-zinc-400">⌄</span></summary><p class="px-5 pb-4 text-sm text-zinc-500">Odpočet úroků, daň z úroků, inflace.</p></details>
+      </div>
+    </section>
+
+    <!-- VÝSLEDKY -->
+    <section class="space-y-6">
+      <div class="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-6 shadow-sm dark:border-blue-900 dark:from-blue-950/50 dark:to-zinc-900">
+        <p class="text-sm font-medium text-blue-700 dark:text-blue-300">Za 5 let vychází nejlépe</p>
+        <h2 class="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">Klasická hypotéka s mimořádnými splátkami</h2>
+        <p class="mt-2 text-zinc-600 dark:text-zinc-400">Jste o <b class="text-zinc-900 dark:text-zinc-100">36 257 Kč</b> v plusu proti offsetu. Offset je ale o <b class="text-zinc-900 dark:text-zinc-100">18 064 Kč</b> lepší než spořicí účet a peníze máte pořád k dispozici.</p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <article class="rounded-xl border-2 border-violet-500 bg-white p-4 shadow-sm dark:bg-zinc-900">
+          <div class="flex items-center justify-between"><span class="h-2.5 w-2.5 rounded-full bg-violet-500"></span><span class="rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-900/50 dark:text-violet-300">1. místo</span></div>
+          <h3 class="mt-2 text-sm font-medium">Mimořádné splátky</h3>
+          <p class="mt-1 text-2xl font-bold tabular-nums">+119 567 Kč</p>
+          <p class="text-xs text-zinc-500">oproti penězům na běžném účtu</p>
+          <p class="mt-3 rounded-md bg-amber-50 p-2 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">K dispozici jen 100 000 Kč rezerva.</p>
+        </article>
+        <article class="rounded-xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <div class="flex items-center justify-between"><span class="h-2.5 w-2.5 rounded-full bg-blue-500"></span><span class="text-xs text-zinc-500">2. místo</span></div>
+          <h3 class="mt-2 text-sm font-medium">Offsetová hypotéka</h3>
+          <p class="mt-1 text-2xl font-bold tabular-nums">+83 310 Kč</p>
+          <p class="text-xs text-zinc-500">oproti penězům na běžném účtu</p>
+          <p class="mt-3 rounded-md bg-emerald-50 p-2 text-xs text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200">Peníze zůstávají k dispozici.</p>
+        </article>
+        <article class="rounded-xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <div class="flex items-center justify-between"><span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span><span class="text-xs text-zinc-500">3. místo</span></div>
+          <h3 class="mt-2 text-sm font-medium">Spořicí účet</h3>
+          <p class="mt-1 text-2xl font-bold tabular-nums">+65 246 Kč</p>
+          <p class="text-xs text-zinc-500">oproti penězům na běžném účtu</p>
+          <p class="mt-3 rounded-md bg-emerald-50 p-2 text-xs text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200">Peníze zůstávají k dispozici.</p>
+        </article>
+        <article class="rounded-xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <div class="flex items-center justify-between"><span class="h-2.5 w-2.5 rounded-full bg-zinc-400"></span><span class="text-xs text-zinc-500">4. místo</span></div>
+          <h3 class="mt-2 text-sm font-medium">Peníze na běžném účtu</h3>
+          <p class="mt-1 text-2xl font-bold tabular-nums">0 Kč</p>
+          <p class="text-xs text-zinc-500">výchozí srovnání</p>
+        </article>
+      </div>
+
+      <div class="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <h2 class="font-semibold">Výhoda v čase</h2>
+          <label class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"><input type="checkbox" class="h-4 w-4 rounded"> V dnešních korunách</label>
+        </div>
+        <svg id="chart" viewBox="0 0 640 260" class="h-auto w-full" role="img" aria-label="Ilustrační graf výhody scénářů v čase"></svg>
+        <div class="mt-2 flex flex-wrap gap-4 text-sm"><span class="flex items-center gap-1.5"><i class="h-0.5 w-5 bg-violet-500"></i>Mimořádné splátky</span><span class="flex items-center gap-1.5"><i class="h-0.5 w-5 bg-blue-500"></i>Offset</span><span class="flex items-center gap-1.5"><i class="h-0.5 w-5 bg-emerald-500"></i>Spořicí účet</span></div>
+      </div>
+
+      <div class="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <h2 class="font-semibold">Proč to tak vychází</h2>
+        <ul class="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+          <li>💡 Každá koruna na offsetu vám ušetří <b class="text-zinc-900 dark:text-zinc-100">5,19 %</b> ročně.</li>
+          <li>💡 Na spořicím účtu vydělá po zdanění <b class="text-zinc-900 dark:text-zinc-100">1,70 %</b>.</li>
+          <li>💡 Přirážka offsetu vás stojí asi <b class="text-zinc-900 dark:text-zinc-100">12 000 Kč</b> ročně.</li>
+        </ul>
+        <p class="mt-4 text-xs text-zinc-500">Kalkulačka je orientační a nejde o finanční poradenství. Podmínky offsetu ověřte u své banky.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+  const kc = v => new Intl.NumberFormat('cs-CZ').format(+v).replace(/ /g, ' ') + ' Kč'
+  const pct = v => (+v).toFixed(2).replace('.', ',') + ' %'
+  document.querySelectorAll('input[type=range]').forEach(r => {
+    const out = r.closest('label').querySelector('output')
+    const f = r.dataset.bind === 'pct' ? pct : kc
+    r.addEventListener('input', () => out.textContent = f(r.value))
+  })
+  // ilustrační graf
+  const end = { D: 119567, B: 83310, C: 65246 }, col = { D: '#8b5cf6', B: '#3b82f6', C: '#10b981' }
+  const W = 640, H = 260, L = 56, R = 12, T = 12, B = 28, max = 140000
+  const x = m => L + (W - L - R) * m / 60, y = v => T + (H - T - B) * (1 - v / max)
+  let s = ''
+  for (let g = 0; g <= 4; g++) { const v = max * g / 4
+    s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="currentColor" opacity=".12"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="currentColor" opacity=".6">${Math.round(v/1000)} tis.</text>` }
+  for (let yr = 0; yr <= 5; yr++) s += `<text x="${x(yr*12)}" y="${H-8}" text-anchor="middle" font-size="11" fill="currentColor" opacity=".6">${yr}</text>`
+  for (const k in end) { const pts = []; for (let m = 0; m <= 60; m += 2) pts.push(`${x(m)},${y(end[k] * Math.pow(m / 60, 1.15))}`)
+    s += `<polyline points="${pts.join(' ')}" fill="none" stroke="${col[k]}" stroke-width="2.5" stroke-linecap="round"/>` }
+  document.getElementById('chart').innerHTML = s
+</script>
+</body>
+</html>
