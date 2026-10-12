@@ -2,6 +2,7 @@ import { defaultInputs } from '../../engine/defaults.ts'
 import type { Inputs } from '../../engine/types.ts'
 import { validate } from '../../engine/validate.ts'
 import { parseNumber } from '../format.ts'
+import type { HashResult } from '../share.ts'
 
 export interface FormState {
   inputs: Inputs
@@ -12,6 +13,8 @@ export interface FormState {
   /** Once the user edits the horizon, it stops following the fixation. */
   horizonTouched: boolean
   showReal: boolean
+  /** The page was opened with a link that could not be read; defaults are shown instead. */
+  linkFailed: boolean
 }
 
 export type Action =
@@ -50,13 +53,32 @@ function dropTexts(texts: Record<string, string>, prefix: string): Record<string
   return Object.fromEntries(Object.entries(texts).filter(([path]) => !path.startsWith(prefix)))
 }
 
-export function initialState(): FormState {
+export function initialState(link?: HashResult): FormState {
+  if (link?.status === 'ok') {
+    // The horizon came with the link, so it must not follow the fixation any more.
+    return {
+      inputs: link.inputs,
+      texts: {},
+      lastValid: link.inputs,
+      horizonTouched: true,
+      showReal: false,
+      linkFailed: false,
+    }
+  }
   const inputs = defaultInputs()
-  return { inputs, texts: {}, lastValid: inputs, horizonTouched: false, showReal: false }
+  return {
+    inputs,
+    texts: {},
+    lastValid: inputs,
+    horizonTouched: false,
+    showReal: false,
+    linkFailed: link?.status === 'invalid',
+  }
 }
 
 function withValidity(state: FormState): FormState {
-  return validate(state.inputs).length === 0 ? { ...state, lastValid: state.inputs } : state
+  const edited = { ...state, linkFailed: false }
+  return validate(state.inputs).length === 0 ? { ...edited, lastValid: state.inputs } : edited
 }
 
 /** Structural change of the accounts list: indices shift, so typed texts are discarded. */

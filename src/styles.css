@@ -615,3 +615,29 @@ table.break-even {
   font-weight: 400;
   padding-left: 1.4rem;
 }
+
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.share button {
+  margin: 0;
+}
+
+.share small {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+.share-manual {
+  flex-basis: 100%;
+}
+
+.share-manual input {
+  box-sizing: border-box;
+  width: 100%;
+}
