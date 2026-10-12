@@ -1,16 +1,6 @@
-export type Theme = 'light' | 'dark'
+type Theme = 'light' | 'dark'
 
 const KEY = 'theme'
-
-/** The stored choice, or null when none is stored or storage is unavailable. */
-export function readStoredTheme(): Theme | null {
-  try {
-    const value = localStorage.getItem(KEY)
-    return value === 'light' || value === 'dark' ? value : null
-  } catch {
-    return null
-  }
-}
 
 function storeTheme(theme: Theme): void {
   try {

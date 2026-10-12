@@ -1,7 +1,6 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
-import { readStoredTheme } from '@/lib/theme'
 import { ThemeToggle } from './ThemeToggle.tsx'
 
 beforeEach(() => {
@@ -22,11 +21,11 @@ test('clicking adds and removes the dark class and remembers the choice', () => 
   fireEvent.click(button)
   expect(document.documentElement.classList.contains('dark')).toBe(true)
   expect(button.getAttribute('aria-pressed')).toBe('true')
-  expect(readStoredTheme()).toBe('dark')
+  expect(localStorage.getItem('theme')).toBe('dark')
 
   fireEvent.click(button)
   expect(document.documentElement.classList.contains('dark')).toBe(false)
-  expect(readStoredTheme()).toBe('light')
+  expect(localStorage.getItem('theme')).toBe('light')
 })
 
 test('it follows the class set before the first paint', () => {
@@ -45,5 +44,4 @@ test('it still works when localStorage throws', () => {
   render(<ThemeToggle />)
   fireEvent.click(screen.getByRole('button', { name: 'Přepnout tmavý režim' }))
   expect(document.documentElement.classList.contains('dark')).toBe(true)
-  expect(readStoredTheme()).toBeNull()
 })

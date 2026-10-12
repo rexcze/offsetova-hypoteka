@@ -1,9 +1,5 @@
-/* Layer order: the old styles sit between Tailwind's base and its components/utilities. */
-@layer theme, base, legacy, components, utilities;
-
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import './legacy.css' layer(legacy);
 
 /* Dark mode is driven by the `dark` class on <html> (see src/lib/theme.ts and the script in index.html). */
 @custom-variant dark (&:is(.dark *));

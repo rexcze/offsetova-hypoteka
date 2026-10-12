@@ -32,8 +32,21 @@ Každý push do `main` spustí kontroly a nasazení na GitHub Pages (`.github/wo
 - [docs/specifikace.md](docs/specifikace.md): přesná pravidla výpočtu, jediný zdroj pravdy.
 - `src/engine/`: čisté TypeScriptové jádro (simulace, analýza, validace) bez Reactu a DOM.
 - `src/ui/`: formulář, výsledky, grafy a sdílení odkazem.
+- `src/components/ui/`: komponenty shadcn/ui (zkopírované do projektu, na běhu na nich nic externího nezávisí).
+- `src/styles.css`: Tailwind a motiv (barvy jako CSS proměnné, světlý a tmavý režim, barvy scénářů `--scenario-a` až `--scenario-d`).
+- [docs/design/nahled.html](docs/design/nahled.html): historický vzor vzhledu, podle kterého vznikl redesign. Aplikace z něj nic nenačítá.
 - [reference/model.py](reference/model.py) a [reference/golden.json](reference/golden.json): referenční model v Pythonu a kontrolní čísla. TypeScriptové jádro je musí reprodukovat na 0,01 Kč.
 - [docs/plan/README.md](docs/plan/README.md): plán implementace po krocích, [LESSONS.md](LESSONS.md): poučení z práce.
+
+### Vzhled: Tailwind CSS a shadcn/ui
+
+Styly jsou Tailwind CSS v4 (utility třídy, plugin pro Vite) a komponenty shadcn/ui. Barvy a poloměry jsou proměnné v `src/styles.css`, tmavý režim se zapíná třídou `dark` na `<html>` (volbu pamatuje `localStorage` pod klíčem `theme`, nic jiného se neukládá). Písmo je systémové, za běhu se nic nestahuje.
+
+Novou komponentu shadcn přidáte příkazem níže. Po něm vždy zkontrolujte `git diff package.json` a importy v `src/components/ui/`: CLI jednou vložilo import `cn` z cizího npm balíčku místo z `@/lib/utils` (viz [LESSONS.md](LESSONS.md)).
+
+```bash
+npx shadcn@latest add <komponenta>
+```
 
 ### Změna výpočtu
 
@@ -45,13 +58,13 @@ python3 reference/model.py > reference/golden.json
 
 ## Ruční test
 
-Automatické testy ověřují jádro i to, že UI zobrazí golden čísla. Ruční test v prohlížeči (`npm run dev`) zkontroluje celou cestu od formuláře:
+Automatické testy ověřují jádro i to, že UI zobrazí golden čísla. Ruční test v prohlížeči (`npm run dev`) zkontroluje celou cestu od formuláře. Čisté jmění je v sekci „Srovnání v tabulce“ (sloupec Čisté jmění), karty nahoře ukazují výhodu proti penězům na běžném účtu. Nesmí být zapnuté „V dnešních korunách“.
 
-1. Klikněte na „Obnovit výchozí hodnoty“. Případ **`zaklad`** je výchozí zadání. Verdikt: nejlépe vychází „Klasická hypotéka a mimořádné splátky“. Pořadí a čisté jmění po 5 letech: D −3 124 464 Kč, C −3 158 425 Kč, B −3 169 157 Kč, A −3 210 783 Kč.
-2. Nastavte měsíční vklad 5 000 Kč. Případ **`pravidelne-sporeni`**: pořadí D −2 791 216 Kč, B −2 827 473 Kč, C −2 845 537 Kč, A −2 910 783 Kč.
-3. Vraťte vklad na 5 000 Kč, nastavte roční navýšení vkladu 3 %, horizont 10 let a sazbu klasické hypotéky po fixaci 5,5 % (offset si doplní přirážku sám, tedy 5,8 %). Případ **`refixace`**: pořadí D −1 594 644 Kč, B −1 649 054 Kč, C −1 837 397 Kč, A −2 016 996 Kč.
+1. Klikněte na „Obnovit výchozí hodnoty“. Případ **`zaklad`** je výchozí zadání. Nejlépe vychází „Klasická hypotéka a mimořádné splátky“. Pořadí a čisté jmění po 5 letech: D −3 124 464 Kč, C −3 158 425 Kč, B −3 169 157 Kč, A −3 210 783 Kč.
+2. Nastavte „Kolik měsíčně spoříte“ na 5 000 Kč. Případ **`pravidelne-sporeni`**: pořadí D −2 791 216 Kč, B −2 827 473 Kč, C −2 845 537 Kč, A −2 910 783 Kč.
+3. V sekci „Upřesnit spoření“ nastavte roční navýšení vkladu 3 %, v sekci „Upřesnit hypotéku a offset“ sazbu klasické hypotéky po fixaci 5,5 % (offset si doplní stejný rozdíl sazeb sám, tedy 5,8 %) a v „Porovnat za“ vyberte 10 let. Případ **`refixace`**: pořadí D −1 594 644 Kč, B −1 649 054 Kč, C −1 837 397 Kč, A −2 016 996 Kč.
 
-Částky v tabulce „Srovnání scénářů“ (sloupec Čisté jmění) se musí shodovat na celé koruny a nesmí být zapnuté „Zobrazit v dnešních korunách“. Zdroj čísel je `reference/golden.json`.
+Částky se musí shodovat na celé koruny. Zdroj čísel je `reference/golden.json`.
 
 ## Soukromí
 

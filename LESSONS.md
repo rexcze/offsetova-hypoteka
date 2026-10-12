@@ -80,3 +80,11 @@ Co dělat: tečky kreslit jako dash `0.1` s mezerou aspoň 6 (kulaté konce tvo�
 Text na buňkách mřížky s 55% sytostí oranžové měl v tmavém režimu kontrast jen 4,19:1. Při 45 % je to nejméně 5,4:1 v obou režimech.
 Co dělat: strop sytosti počítat skriptem pro světlý i tmavý režim a pro obě barvy (výhra, prohra).
 
+**Audit barev v skrytém panelu prohlížeče ukazuje špatné kontrasty, dokud se nevypnou CSS přechody.**
+Po přepnutí tmavého režimu skript hlásil desítky prvků s kontrastem kolem 1:1, ačkoli skutečné barvy byly v pořádku. Skrytá stránka nedokončí `transition` a barvy zůstanou na půl cesty. Totéž platí pro `requestAnimationFrame`.
+Co dělat: před auditem vložit styl `*{transition:none!important;animation:none!important}` a až potom přepínat režim. Kontrast počítat skriptem v prohlížeči (barvy převést přes canvas), ne odhadem.
+
+**Psaní z nástroje do prohlížeče jde do prvku, který má fokus, ne do toho, na který se zrovna dívám.**
+Při ručním testu jsem psal „10“ do otevřeného seznamu, ale fokus zůstal v poli „Daň z úroků“, které jsem předtím zkoušel klávesnicí, a daň se změnila z 15 % na 10 %. Čísla pak nesedela s referenčním modelem a hledání příčiny stálo čas.
+Co dělat: před psaním ověřit `document.activeElement`, a když čísla nesedí, nejdřív dekódovat vstupy z odkazu a porovnat je s předpokládanými, než se hledá chyba ve výpočtu.
+

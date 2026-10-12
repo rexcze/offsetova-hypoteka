@@ -35,7 +35,7 @@ Vizuální vzor je [náhled](../design/nahled.html), styl schválil uživatel. S
 - [x] [14 – Nový formulář](14-redesign-formular.md)
 - [x] [15 – Nové výsledky](15-redesign-vysledky.md)
 - [x] [16 – Nové grafy](16-redesign-grafy.md)
-- [ ] [17 – Dokončení redesignu](17-redesign-dokonceni.md)
+- [x] [17 – Dokončení redesignu](17-redesign-dokonceni.md)
 
 Další verze jsou v [backlogu](backlog.md). Na ty se sahá až po dokončení MVP a se souhlasem uživatele.
 

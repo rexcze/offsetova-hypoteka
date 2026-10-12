@@ -9,7 +9,7 @@ import { formatInputNumber } from '../format.ts'
 import { useForm } from './context.ts'
 import { getAt } from './state.ts'
 
-export const idOf = (path: string) => `f-${path.replaceAll('.', '-')}`
+const idOf = (path: string) => `f-${path.replaceAll('.', '-')}`
 
 function Hint({ id, children }: { id: string; children: ReactNode }) {
   return (
