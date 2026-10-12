@@ -13,6 +13,11 @@ export interface FormState {
   /** Once the user edits the horizon, it stops following the fixation. */
   horizonTouched: boolean
   showReal: boolean
+  /**
+   * Whether the bank offers a different rate for the offset mortgage. While false, `loan.offsetRate`
+   * always equals `loan.classicRate`; the surcharge is derived, never typed.
+   */
+  offsetRateDiffers: boolean
   /** The page was opened with a link that could not be read; defaults are shown instead. */
   linkFailed: boolean
 }
@@ -24,6 +29,9 @@ export type Action =
   | { type: 'removeAccount'; account: number }
   | { type: 'addTier'; account: number }
   | { type: 'removeTier'; account: number; tier: number }
+  | { type: 'offsetRateDiffers'; value: boolean }
+  | { type: 'simpleSavingsRate'; rate: number }
+  | { type: 'example' }
   | { type: 'growthFromInflation' }
   | { type: 'showReal'; value: boolean }
   | { type: 'reset' }
@@ -62,6 +70,7 @@ export function initialState(link?: HashResult): FormState {
       lastValid: link.inputs,
       horizonTouched: true,
       showReal: false,
+      offsetRateDiffers: link.inputs.loan.offsetRate !== link.inputs.loan.classicRate,
       linkFailed: false,
     }
   }
@@ -72,6 +81,7 @@ export function initialState(link?: HashResult): FormState {
     lastValid: inputs,
     horizonTouched: false,
     showReal: false,
+    offsetRateDiffers: inputs.loan.offsetRate !== inputs.loan.classicRate,
     linkFailed: link?.status === 'invalid',
   }
 }
@@ -108,6 +118,10 @@ export function reducer(state: FormState, action: Action): FormState {
         inputs = setAt(inputs, 'horizonYears', parsed)
         delete texts.horizonYears
       }
+      if (action.path === 'loan.classicRate' && !state.offsetRateDiffers) {
+        inputs = setAt(inputs, 'loan.offsetRate', value)
+        delete texts['loan.offsetRate']
+      }
       return withValidity({
         ...state,
         inputs,
@@ -142,6 +156,33 @@ export function reducer(state: FormState, action: Action): FormState {
         tiers.splice(action.tier, 1)
         tiers[tiers.length - 1]!.upTo = null
       })
+    case 'offsetRateDiffers': {
+      if (action.value === state.offsetRateDiffers) return state
+      if (action.value) return { ...state, offsetRateDiffers: true }
+      const texts = { ...state.texts }
+      delete texts['loan.offsetRate']
+      return withValidity({
+        ...state,
+        offsetRateDiffers: false,
+        texts,
+        inputs: setAt(state.inputs, 'loan.offsetRate', state.inputs.loan.classicRate),
+      })
+    }
+    case 'simpleSavingsRate': {
+      // Texts are kept on purpose: the field being typed in must not lose its text on every keystroke.
+      const inputs = structuredClone(state.inputs)
+      const first = inputs.savings.accounts[0]
+      if (!first) {
+        inputs.savings.accounts.push({ name: 'Spořicí účet', tiers: [{ upTo: null, rate: action.rate }] })
+      } else if (first.tiers.length === 0) {
+        first.tiers.push({ upTo: null, rate: action.rate })
+      } else {
+        first.tiers[0]!.rate = action.rate
+      }
+      return withValidity({ ...state, inputs })
+    }
+    case 'example':
+      return { ...initialState(), showReal: state.showReal }
     case 'growthFromInflation': {
       const texts = { ...state.texts }
       delete texts['savings.depositGrowth']
@@ -154,6 +195,6 @@ export function reducer(state: FormState, action: Action): FormState {
     case 'showReal':
       return { ...state, showReal: action.value }
     case 'reset':
-      return { ...initialState(), showReal: state.showReal }
+      return initialState()
   }
 }
