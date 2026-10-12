@@ -21,3 +21,9 @@ Co dělat: řadit podle `Math.round(netWorth * 100)` se stabilním pořadím A, 
 **Údaje o sazbách a bankách na srovnávačích jsou nekonzistentní a zastaralé.**
 Dvě podstránky jednoho srovnávače uváděly pro stejný úvěr různé sazby (4,69 % a 4,84 %). Nejnovější nalezený seznam bank s offsetovou hypotékou byl z roku 2017.
 Co dělat: kalkulačka nemá předvolby bank (rozhodnutí uživatele). Výchozí hodnoty ve formuláři jsou jen ilustrační a UI to říká. Fakta o pravidlech (daně, poplatky) ověřovat a v textech uvádět, že se mohou změnit.
+
+## Nástroje
+
+**Prettier přeformátoval dokumenty a referenční data.**
+První `prettier --write .` přepsal Markdown ve `docs/` a `reference/golden.json`, které se nesmějí měnit mimo specifikaci. Šablona Vite navíc nově dodává oxlint místo ESLintu, plán ale počítá s ESLintem.
+Co dělat: `.prettierignore` vylučuje `docs`, `reference` a `*.md`. Při zakládání projektu porovnat výchozí nástroje šablony s plánem.

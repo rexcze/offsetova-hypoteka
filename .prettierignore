@@ -1,0 +1,6 @@
+docs
+reference
+dist
+coverage
+package-lock.json
+*.md

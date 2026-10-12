@@ -14,7 +14,7 @@ Kalkulačka offsetové hypotéky, která porovná offset s klasickou hypotékou,
 
 ## Kroky MVP
 
-- [ ] [01 – Kostra projektu](01-kostra-projektu.md)
+- [x] [01 – Kostra projektu](01-kostra-projektu.md)
 - [ ] [02 – Nasazení na GitHub Pages](02-nasazeni-github-pages.md)
 - [ ] [03 – Jádro: typy, validace a pomocné funkce](03-jadro-typy-a-pomocne-funkce.md)
 - [ ] [04 – Jádro: měsíční simulace](04-jadro-simulace.md)
