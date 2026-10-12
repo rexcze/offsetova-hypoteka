@@ -21,14 +21,14 @@ test('inputs are read from the hash on load', () => {
   window.history.replaceState(null, '', `/#${encodeInputs(inputs)}`)
   render(<App />)
   expect((screen.getByLabelText('Výše úvěru') as HTMLInputElement).value.replace(/\s/g, '')).toBe('2500000')
-  expect((screen.getByLabelText('Horizont') as HTMLInputElement).value).toBe('8')
+  expect(screen.getByLabelText('Porovnat za').textContent).toBe('8 let')
 })
 
 test('a damaged link shows a quiet notice and the defaults', () => {
   window.history.replaceState(null, '', '/#v1=damaged!!')
   render(<App />)
   expect(screen.getByText(/Odkaz se nepodařilo načíst/)).toBeTruthy()
-  expect((screen.getByLabelText('Sazba klasické hypotéky') as HTMLInputElement).value).toBe('4,89')
+  expect((screen.getByLabelText('Úroková sazba hypotéky') as HTMLInputElement).value).toBe('4,89')
 })
 
 test('changes are written to the hash after a debounce, without new history entries', () => {

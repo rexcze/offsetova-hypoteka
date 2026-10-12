@@ -56,3 +56,11 @@ Co dělat: po `shadcn add` projít `git diff package.json` i importy v `src/comp
 Starý `styles.css` používal `--muted` a `--accent` jako barvy textu, shadcn je používá jako světlé pozadí. Nevrstvené staré pravidlo by navíc přebilo utility třídy nových tlačítek a Tailwind preflight smazal odrážky seznamů a `display` u `svg`.
 Co dělat: staré styly dát do vrstvy `legacy` (pořadí `theme, base, legacy, components, utilities`), jejich proměnné přejmenovat na `--legacy-*` a navázat na nový motiv, tmavý režim řídit třídou `dark` místo `prefers-color-scheme`. Při jednosloupcové mřížce vždy `grid-cols-[minmax(0,1fr)]`, jinak se sloupec roztáhne podle širokých tabulek (na mobilu stránka 1304 px).
 
+**Komponenty Radix v jsdom spadnou na chybějící `ResizeObserver`, a to celé UI testy najednou.**
+Po přidání posuvníku a zaškrtávátek z shadcn selhalo 19 testů, i těch, které formulář netestují, protože všechny vykreslují `App`. jsdom nemá `ResizeObserver`, `hasPointerCapture` ani `scrollIntoView`.
+Co dělat: polyfilly jsou v `src/test/setup.ts` (nastaveno ve `setupFiles`, jen pro jsdom). Select z Radixu se v testech otevře klávesou Enter na tlačítku a volba klávesou Enter na položce.
+
+**Dvě pole nad stejnou hodnotou nesmí sdílet `id`.**
+Jednoduché pole „Úrok vašeho spořicího účtu“ a první pásmo v sekci Upřesnit spoření upravují stejnou sazbu a obě používaly `id` odvozené z cesty. Po rozbalení sekce byla na stránce dvě stejná `id` a popisek ukazoval na špatné pole.
+Co dělat: jednoduché pole má vlastní `id`; test kontroluje, že na stránce nejsou duplicitní `id`. Navíc: zvýšení sazby prvního pásma pravidlo „sazby nerostou“ neporuší, poruší ho až snížení pod sazbu druhého pásma.
+

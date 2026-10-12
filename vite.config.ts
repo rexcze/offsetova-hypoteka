@@ -12,6 +12,7 @@ export default defineConfig({
     // Engine tests run in node; UI tests opt in with a `// @vitest-environment jsdom` docblock.
     environment: 'node',
     include: ['src/**/*.test.{ts,tsx}'],
+    setupFiles: ['src/test/setup.ts'],
     coverage: { provider: 'v8', include: ['src/engine/**'] },
   },
 })

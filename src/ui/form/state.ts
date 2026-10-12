@@ -30,12 +30,14 @@ export type Action =
   | { type: 'addTier'; account: number }
   | { type: 'removeTier'; account: number; tier: number }
   | { type: 'offsetRateDiffers'; value: boolean }
-  | { type: 'simpleSavingsRate'; rate: number }
+  | { type: 'simpleSavingsRate'; rate: number; text?: string }
   | { type: 'example' }
   | { type: 'growthFromInflation' }
   | { type: 'showReal'; value: boolean }
   | { type: 'reset' }
 
+/** The field edited by the simple savings rate (first tier of the first account). */
+export const SIMPLE_RATE_PATH = 'savings.accounts.0.tiers.0.rate'
 export const MAX_ACCOUNTS = 5
 export const MAX_TIERS = 4
 
@@ -179,7 +181,9 @@ export function reducer(state: FormState, action: Action): FormState {
       } else {
         first.tiers[0]!.rate = action.rate
       }
-      return withValidity({ ...state, inputs })
+      const texts =
+        action.text === undefined ? state.texts : { ...state.texts, [SIMPLE_RATE_PATH]: action.text }
+      return withValidity({ ...state, inputs, texts })
     }
     case 'example':
       return { ...initialState(), showReal: state.showReal }
