@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, expect, test } from 'vitest'
 import App from '../../App.tsx'
 
@@ -19,7 +19,7 @@ test('an invalid value shows an error at its field and keeps the last valid resu
   expect(input.getAttribute('aria-invalid')).toBe('true')
   expect(document.getElementById('f-loan-classicRate-error')?.textContent).toMatch(/Sazba klasické hypotéky/)
   expect(screen.getByText(/Opravte zvýrazněná pole/)).toBeTruthy()
-  expect(screen.getAllByRole('row').length).toBe(5)
+  expect(within(screen.getByRole('table', { name: 'Srovnání scénářů' })).getAllByRole('row').length).toBe(5)
 })
 
 test('horizon follows the fixation until it is edited, then it stays', () => {

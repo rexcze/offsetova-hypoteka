@@ -1,5 +1,12 @@
 import { describe, expect, test } from 'vitest'
-import { formatCzk, formatInputNumber, formatPercent, formatYears, parseNumber } from './format.ts'
+import {
+  formatCompactCzk,
+  formatCzk,
+  formatInputNumber,
+  formatPercent,
+  formatYears,
+  parseNumber,
+} from './format.ts'
 
 const plain = (s: string) => s.replace(/[\u00a0\u202f]/g, ' ')
 
@@ -53,4 +60,15 @@ describe('formatYears', () => {
     [5, '5 let'],
     [30, '30 let'],
   ])('%i → %s', (n, text) => expect(formatYears(n)).toBe(text))
+})
+
+describe('formatCompactCzk', () => {
+  test.each([
+    [0, '0'],
+    [0.2, '0'],
+    [500, '500'],
+    [300_000, '300 tis.'],
+    [-120_000, '−120 tis.'],
+    [1_500_000, '1,5 mil.'],
+  ])('%d → %s', (x, text) => expect(plain(formatCompactCzk(x))).toBe(text))
 })

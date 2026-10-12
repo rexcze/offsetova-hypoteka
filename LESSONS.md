@@ -35,3 +35,8 @@ Co dělat: varování testovat na upraveném výsledku simulace, ne hledáním v
 **Prettier přepisuje escapy `\u00a0` na skutečné nezlomitelné mezery, ESLint je pak odmítne.**
 Po `prettier --write` hlásil `no-irregular-whitespace` chyby v `format.ts` a v jeho testu, kde byly původně zápisy `\u00a0` a `\u202f` v regulárním výrazu.
 Co dělat: po formátování zkontrolovat `npm run lint`; pokud se to stane, escapy vrátit. Nezlomitelné mezery v kódu psát vždy jako escape.
+
+**Mřížka bodu zvratu má pro výchozí vstupy hrubý krok, nejbližší buňka je jen přibližná.**
+Osa úspor jde od 0 do max(2 · úspory, úvěr / 2), u výchozích vstupů tedy do 2 000 000 Kč s krokem 200 000 Kč. Úspory 300 000 Kč leží přesně mezi dvěma sloupci a zvýrazní se ten vyšší. Zvýraznění proto říká „nejblíž vašemu zadání“ a přesná čísla jsou v textu pod mřížkou.
+Co dělat: kdyby se mřížka měla zpřesnit, měnit osu ve specifikaci (oddíl 6), ne v UI.
+

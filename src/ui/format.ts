@@ -40,3 +40,15 @@ export function formatInputNumber(value: number | null, scale = 1, grouped = fal
 export function formatYears(n: number): string {
   return `${n} ${n === 1 ? 'rok' : n >= 2 && n <= 4 ? 'roky' : 'let'}`
 }
+
+/** Short amount for chart axes: "−120 tis.", "1,5 mil.". */
+export function formatCompactCzk(x: number): string {
+  const a = Math.abs(x)
+  if (Math.round(a) === 0) return '0'
+  const sign = x < 0 ? '−' : ''
+  if (a >= 1e6)
+    return `${sign}${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 1 }).format(a / 1e6)}${NBSP}mil.`
+  if (a >= 1000)
+    return `${sign}${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(a / 1000)}${NBSP}tis.`
+  return `${sign}${Math.round(a)}`
+}

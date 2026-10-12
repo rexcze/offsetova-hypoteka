@@ -3,6 +3,12 @@
   --text: #1a1d23;
   --muted: #5b6270;
   --accent: #0b6bcb;
+  --c-a: #5f6673;
+  --c-b: #0072b2;
+  --c-c: #b5468a;
+  --c-d: #00875f;
+  --win: #0072b2;
+  --lose: #d55e00;
   font-family:
     system-ui,
     -apple-system,
@@ -18,6 +24,12 @@
     --text: #e8eaee;
     --muted: #a3aab8;
     --accent: #6cb0ff;
+    --c-a: #a3aab8;
+    --c-b: #56b4e9;
+    --c-c: #e58fc0;
+    --c-d: #2fd0a0;
+    --win: #56b4e9;
+    --lose: #f08a3c;
   }
 }
 
@@ -343,4 +355,220 @@ table.scenarios {
     text-align: left;
     color: var(--muted);
   }
+}
+
+/* Scenario colours are the same in the table, legends and charts. */
+.sc-A {
+  --sc: var(--c-a);
+}
+
+.sc-B {
+  --sc: var(--c-b);
+}
+
+.sc-C {
+  --sc: var(--c-c);
+}
+
+.sc-D {
+  --sc: var(--c-d);
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.15rem;
+  border-radius: 0.15rem;
+  background: var(--sc);
+}
+
+.chart-section {
+  margin-bottom: 1.5rem;
+}
+
+.chart {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.chart-svg {
+  display: block;
+  max-width: 100%;
+  touch-action: pan-y;
+}
+
+.chart-svg .line {
+  stroke: var(--sc);
+  stroke-width: 2.5;
+}
+
+.legend .line {
+  stroke: var(--sc);
+  stroke-width: 2.5;
+}
+
+.chart-svg .dot {
+  fill: var(--sc);
+  stroke: var(--bg);
+  stroke-width: 1.5;
+}
+
+.chart-svg .grid {
+  stroke: color-mix(in srgb, var(--muted) 30%, transparent);
+}
+
+.chart-svg .zero {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.chart-svg .tick {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.chart-svg .marker {
+  stroke: var(--muted);
+  stroke-dasharray: 4 3;
+}
+
+.chart-svg .marker-label {
+  fill: var(--text);
+  font-size: 11px;
+}
+
+.chart-svg .crosshair {
+  stroke: var(--muted);
+}
+
+.tooltip {
+  position: absolute;
+  top: 2.5rem;
+  z-index: 1;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  pointer-events: none;
+  background: var(--bg);
+  border: 1px solid var(--muted);
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
+  max-width: 16rem;
+}
+
+.tooltip .swatch {
+  background: var(--sc);
+}
+
+table.data {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.data th,
+.data td {
+  padding: 0.25rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  white-space: nowrap;
+}
+
+.data th:first-child {
+  text-align: left;
+}
+
+table.break-even {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  table-layout: fixed;
+  font-size: 0.7rem;
+}
+
+.break-even th {
+  padding: 0;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--muted);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.break-even th:first-child {
+  width: 4.2rem;
+  text-align: left;
+}
+
+.break-even th.corner {
+  font-size: 0.6rem;
+  white-space: normal;
+}
+
+.break-even td {
+  height: 1.7rem;
+  padding: 0;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.break-even td.win {
+  background: color-mix(in srgb, var(--win) calc(15% + var(--i) * 70%), transparent);
+}
+
+.break-even td.lose {
+  background: color-mix(in srgb, var(--lose) calc(15% + var(--i) * 70%), transparent);
+}
+
+.break-even td.neutral {
+  background: color-mix(in srgb, var(--muted) 15%, transparent);
+  color: var(--muted);
+}
+
+.break-even td.current,
+.cell-sample.current {
+  outline: 3px solid var(--text);
+  outline-offset: -3px;
+}
+
+.break-even td:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.cell-sample {
+  display: inline-block;
+  width: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0.2rem;
+}
+
+.cell-sample.win {
+  background: color-mix(in srgb, var(--win) 55%, transparent);
+}
+
+.cell-sample.lose {
+  background: color-mix(in srgb, var(--lose) 55%, transparent);
+}
+
+.cell-sample.neutral {
+  background: color-mix(in srgb, var(--muted) 15%, transparent);
+}
+
+.readout {
+  min-height: 2.6em;
+  margin: 0.5rem 0;
 }

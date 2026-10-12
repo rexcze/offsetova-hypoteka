@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
 import { crossovers, marginalRates, offsetVsBest, toReal, warnings } from '../../engine/analysis.ts'
 import type { Inputs, ScenarioId, SimulationResult } from '../../engine/types.ts'
+import { AdvantageChart } from '../charts/AdvantageChart.tsx'
+import { BreakEvenGridView } from '../charts/BreakEvenGridView.tsx'
 import { formatCzk, formatPercent, formatYears } from '../format.ts'
 import { SCENARIO_LABELS } from '../labels.ts'
 import { warningText } from './warningText.ts'
@@ -100,7 +102,7 @@ export function Results({ inputs, result, showReal, hasErrors }: Props) {
         {showReal ? ' (v dnešních korunách)' : ''}
       </h2>
       <div className="table-wrap">
-        <table className="scenarios">
+        <table className="scenarios" aria-label="Srovnání scénářů">
           <thead>
             <tr>
               <th scope="col">Scénář</th>
@@ -119,8 +121,8 @@ export function Results({ inputs, result, showReal, hasErrors }: Props) {
               const s = result.scenarios[id].summary
               return (
                 <tr key={id} className={i === 0 ? 'winner' : undefined}>
-                  <th scope="row">
-                    {i + 1}. {SCENARIO_LABELS[id]}
+                  <th scope="row" className={`sc-${id}`}>
+                    <span className="swatch" aria-hidden="true" /> {i + 1}. {SCENARIO_LABELS[id]}
                     {i === 0 && <span className="badge">nejlepší</span>}
                     {id === 'D' && (
                       <small className="hint">
@@ -145,6 +147,9 @@ export function Results({ inputs, result, showReal, hasErrors }: Props) {
           </tbody>
         </table>
       </div>
+
+      <AdvantageChart inputs={inputs} result={result} showReal={showReal} />
+      <BreakEvenGridView inputs={inputs} showReal={showReal} />
 
       <div className="why card">
         <h2>Proč to tak vychází</h2>

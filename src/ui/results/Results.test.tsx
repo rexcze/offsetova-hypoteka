@@ -10,9 +10,11 @@ test('default inputs: verdict names scenario D and the table is ordered D, C, B,
   expect(
     screen.getByRole('heading', { level: 2, name: /vychází nejlépe: Klasická hypotéka a mimořádné splátky/ }),
   ).toBeTruthy()
-  const rows = within(screen.getByRole('table')).getAllByRole('row').slice(1)
+  const rows = within(screen.getByRole('table', { name: 'Srovnání scénářů' }))
+    .getAllByRole('row')
+    .slice(1)
   expect(rows).toHaveLength(4)
-  const names = rows.map((r) => within(r).getAllByRole('rowheader')[0]!.textContent ?? '')
+  const names = rows.map((r) => (within(r).getAllByRole('rowheader')[0]!.textContent ?? '').trim())
   expect(names[0]).toMatch(/^1\. Klasická hypotéka a mimořádné splátky/)
   expect(names[1]).toMatch(/^2\. Klasická hypotéka a spořicí účty/)
   expect(names[2]).toMatch(/^3\. Offsetová hypotéka/)
@@ -21,9 +23,9 @@ test('default inputs: verdict names scenario D and the table is ordered D, C, B,
 
 test('the real-terms switch is stated in the headings', () => {
   render(<App />)
-  expect(screen.queryByText(/v dnešních korunách\)/)).toBeNull()
+  expect(screen.queryByRole('heading', { level: 2, name: /v dnešních korunách/ })).toBeNull()
   fireEvent.click(screen.getByLabelText('Zobrazit v dnešních korunách'))
-  expect(screen.getByRole('heading', { level: 2, name: /v dnešních korunách/ })).toBeTruthy()
+  expect(screen.getAllByRole('heading', { level: 2, name: /v dnešních korunách/ })).toHaveLength(3)
 })
 
 test('explanation panel and disclaimer are shown', () => {
