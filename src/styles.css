@@ -214,3 +214,133 @@ button {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+.card {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
+  border-radius: 0.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.verdict {
+  border-color: var(--accent);
+}
+
+.verdict p {
+  margin: 0.4rem 0;
+}
+
+.results h2 {
+  font-size: 1.2rem;
+}
+
+.warnings {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.warnings li {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 4px solid var(--muted);
+  border-radius: 0.3rem;
+  background: color-mix(in srgb, var(--muted) 12%, transparent);
+}
+
+.warnings li.warning {
+  border-left-color: #e08a00;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+table.scenarios {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.scenarios th,
+.scenarios td {
+  padding: 0.4rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  vertical-align: top;
+}
+
+.scenarios th:first-child {
+  text-align: left;
+}
+
+.scenarios tr.winner {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.badge {
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--accent);
+  border-radius: 0.6rem;
+}
+
+.assumptions {
+  margin-bottom: 1rem;
+}
+
+.assumptions summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Narrow screens: every scenario becomes a card instead of a wide table row. */
+@media (max-width: 55.99rem) {
+  .scenarios thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .scenarios,
+  .scenarios tbody,
+  .scenarios tr,
+  .scenarios th,
+  .scenarios td {
+    display: block;
+  }
+
+  .scenarios tr {
+    margin-bottom: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
+    border-radius: 0.4rem;
+  }
+
+  .scenarios th,
+  .scenarios td {
+    border-bottom: none;
+  }
+
+  .scenarios td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .scenarios td::before {
+    content: attr(data-label);
+    text-align: left;
+    color: var(--muted);
+  }
+}

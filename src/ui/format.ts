@@ -35,3 +35,8 @@ export function formatInputNumber(value: number | null, scale = 1, grouped = fal
     ? new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 10 }).format(n)
     : String(n).replace('.', ',')
 }
+
+/** "1 rok", "3 roky", "5 let". */
+export function formatYears(n: number): string {
+  return `${n} ${n === 1 ? 'rok' : n >= 2 && n <= 4 ? 'roky' : 'let'}`
+}

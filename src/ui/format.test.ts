@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { formatCzk, formatInputNumber, formatPercent, parseNumber } from './format.ts'
+import { formatCzk, formatInputNumber, formatPercent, formatYears, parseNumber } from './format.ts'
 
 const plain = (s: string) => s.replace(/[\u00a0\u202f]/g, ' ')
 
@@ -44,4 +44,13 @@ describe('formatInputNumber', () => {
     expect(formatInputNumber(null)).toBe('')
     expect(formatInputNumber(NaN)).toBe('')
   })
+})
+
+describe('formatYears', () => {
+  test.each([
+    [1, '1 rok'],
+    [3, '3 roky'],
+    [5, '5 let'],
+    [30, '30 let'],
+  ])('%i → %s', (n, text) => expect(formatYears(n)).toBe(text))
 })

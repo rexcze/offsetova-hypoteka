@@ -19,7 +19,7 @@ test('an invalid value shows an error at its field and keeps the last valid resu
   expect(input.getAttribute('aria-invalid')).toBe('true')
   expect(document.getElementById('f-loan-classicRate-error')?.textContent).toMatch(/Sazba klasické hypotéky/)
   expect(screen.getByText(/Opravte zvýrazněná pole/)).toBeTruthy()
-  expect(screen.getAllByRole('listitem').length).toBe(4)
+  expect(screen.getAllByRole('row').length).toBe(5)
 })
 
 test('horizon follows the fixation until it is edited, then it stays', () => {
