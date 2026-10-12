@@ -64,3 +64,11 @@ Co dělat: polyfilly jsou v `src/test/setup.ts` (nastaveno ve `setupFiles`, jen 
 Jednoduché pole „Úrok vašeho spořicího účtu“ a první pásmo v sekci Upřesnit spoření upravují stejnou sazbu a obě používaly `id` odvozené z cesty. Po rozbalení sekce byla na stránce dvě stejná `id` a popisek ukazoval na špatné pole.
 Co dělat: jednoduché pole má vlastní `id`; test kontroluje, že na stránce nejsou duplicitní `id`. Navíc: zvýšení sazby prvního pásma pravidlo „sazby nerostou“ neporuší, poruší ho až snížení pod sazbu druhého pásma.
 
+**Rozdíl vítěze se v režimu „dnešní koruny“ od kroku 7 přepočítával dvakrát.**
+Verdikt počítal rozdíl z už přepočtených čistých jmění a pak ho poslal do funkce, která přepočítává znovu. Ve výchozím nastavení (nominální koruny) chyba nebyla vidět, v dnešních korunách byl rozdíl o inflační faktor menší. Nenašly ji testy ani ruční kontrola, protože nikdo neporovnal číslo ve verdiktu s ručním výpočtem.
+Co dělat: funkce `summarize` vrací rozdíl už ve zvolených korunách a říká to v komentáři. Test porovnává číslo ve verdiktu v dnešních korunách s hodnotou spočtenou z jádra. U přepínače režimu zobrazení vždy ověřit jednu konkrétní hodnotu, ne jen to, že se změnil nadpis.
+
+**Testing Library neporovnává nezlomitelné mezery v hledaném textu.**
+`getByText('+86 319 Kč')` s textem z `formatCzk` nenašlo prvek, protože ve formátované částce jsou nezlomitelné mezery a hledaný text je v testu převeden na obyčejné.
+Co dělat: v testech použít porovnání funkcí (`withText`), které obě strany normalizuje.
+

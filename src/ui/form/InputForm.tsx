@@ -3,8 +3,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Switch } from '@/components/ui/switch'
 import { formatCzk, formatPercent, formatYears } from '../format.ts'
 import { Accounts } from './Accounts.tsx'
 import { useForm } from './context.ts'
@@ -228,14 +226,6 @@ export function InputForm() {
               options={horizonOptions(inputs.loan.termYears, inputs.horizonYears)}
               hint="Za kolik let se výsledky porovnávají."
             />
-          </div>
-          <div className="flex items-center gap-2">
-            <Switch
-              id="f-showReal"
-              checked={state.showReal}
-              onCheckedChange={(value) => dispatch({ type: 'showReal', value })}
-            />
-            <Label htmlFor="f-showReal">Zobrazit v dnešních korunách</Label>
           </div>
         </CardContent>
       </Card>

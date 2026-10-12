@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen, within } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, expect, test } from 'vitest'
 import golden from '../../reference/golden.json'
 import App from '../App.tsx'
@@ -26,13 +26,10 @@ test.each(cases)('UI shows the golden verdict and net worth for $name', ({ input
   render(<App />)
 
   const winner = expected.ranking[0]!
-  expect(
-    screen.getByRole('heading', {
-      level: 2,
-      name: new RegExp(`vychází nejlépe: ${SCENARIO_LABELS[winner]}`),
-    }),
-  ).toBeTruthy()
+  expect(screen.getByRole('heading', { level: 2, name: SCENARIO_LABELS[winner] })).toBeTruthy()
+  expect(screen.getByText(/vychází nejlépe/)).toBeTruthy()
 
+  fireEvent.click(screen.getByRole('button', { name: 'Srovnání v tabulce' }))
   const rows = within(screen.getByRole('table', { name: 'Srovnání scénářů' }))
     .getAllByRole('row')
     .slice(1)

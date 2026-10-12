@@ -12,8 +12,8 @@ afterEach(cleanup)
 const field = (label: string) => screen.getByLabelText(label) as HTMLInputElement
 const type = (label: string, value: string) => fireEvent.change(field(label), { target: { value } })
 const digits = (text: string) => text.replace(/\s/g, '')
-const tableRows = () =>
-  within(screen.getByRole('table', { name: 'Srovnání scénářů' })).getAllByRole('row').length
+const scenarioCards = () =>
+  within(screen.getByRole('list', { name: 'Pořadí scénářů' })).getAllByRole('listitem').length
 
 /** Opens a Radix select with the keyboard and picks an option. */
 function choose(label: string, option: string) {
@@ -73,11 +73,11 @@ test('an invalid text shows an error at its field and keeps the last valid resul
     .find((id) => id.endsWith('-error'))!
   expect(document.getElementById(errorId)?.textContent).toMatch(/Sazba klasické hypotéky/)
   expect(screen.getByText(/Opravte zvýrazněná pole/)).toBeTruthy()
-  expect(tableRows()).toBe(5)
+  expect(scenarioCards()).toBe(4)
 
   type('Úroková sazba hypotéky', 'abc')
   expect(input.getAttribute('aria-invalid')).toBe('true')
-  expect(tableRows()).toBe(5)
+  expect(scenarioCards()).toBe(4)
 })
 
 test('an advanced section opens by itself when a field in it has an error', () => {

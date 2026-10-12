@@ -8,6 +8,8 @@ import { ShareButton, ShareNote, useShareLink } from './ui/ShareLink.tsx'
 import { ThemeToggle } from './ui/ThemeToggle.tsx'
 import { encodeInputs, readHash } from './ui/share.ts'
 import { Results } from './ui/results/Results.tsx'
+import { StickySummary } from './ui/results/StickySummary.tsx'
+import { summarize } from './ui/results/summary.ts'
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, undefined, () => initialState(readHash(window.location.hash)))
@@ -30,6 +32,11 @@ export default function App() {
   }, [state.lastValid])
 
   const share = useShareLink(state.lastValid)
+
+  const summary = useMemo(
+    () => summarize(state.lastValid, result, state.showReal),
+    [state.lastValid, result, state.showReal],
+  )
 
   const hasErrors = Object.keys(errors).length > 0
 
@@ -65,11 +72,19 @@ export default function App() {
           </p>
         )}
         <ShareNote share={share} />
+        <StickySummary summary={summary} />
         <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
           <FormContext value={{ state, dispatch, errors }}>
             <InputForm />
           </FormContext>
-          <Results inputs={state.lastValid} result={result} showReal={state.showReal} hasErrors={hasErrors} />
+          <Results
+            inputs={state.lastValid}
+            result={result}
+            summary={summary}
+            showReal={state.showReal}
+            onShowRealChange={(value) => dispatch({ type: 'showReal', value })}
+            hasErrors={hasErrors}
+          />
         </div>
       </main>
     </div>

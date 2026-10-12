@@ -33,7 +33,7 @@ Vizuální vzor je [náhled](../design/nahled.html), styl schválil uživatel. S
 - [x] [12 – Vizuální základ](12-redesign-vizualni-zaklad.md)
 - [x] [13 – Stav formuláře pro jednoduché zadávání](13-redesign-model-formulare.md)
 - [x] [14 – Nový formulář](14-redesign-formular.md)
-- [ ] [15 – Nové výsledky](15-redesign-vysledky.md)
+- [x] [15 – Nové výsledky](15-redesign-vysledky.md)
 - [ ] [16 – Nové grafy](16-redesign-grafy.md)
 - [ ] [17 – Dokončení redesignu](17-redesign-dokonceni.md)
 

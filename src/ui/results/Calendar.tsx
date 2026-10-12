@@ -63,8 +63,7 @@ export function Calendar({ result, inflation, showReal }: Props) {
     })
 
   return (
-    <details className="calendar">
-      <summary>Podrobný průběh{showReal ? ' (v dnešních korunách)' : ''}</summary>
+    <div className="calendar">
       <div role="tablist" aria-label="Scénář" className="tabs">
         {IDS.map((id) => (
           <button
@@ -142,6 +141,6 @@ export function Calendar({ result, inflation, showReal }: Props) {
           </table>
         </div>
       </div>
-    </details>
+    </div>
   )
 }
