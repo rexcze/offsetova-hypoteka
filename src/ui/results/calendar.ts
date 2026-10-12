@@ -22,7 +22,7 @@ export interface YearRow {
 }
 
 /** Converts every amount of a month to today's CZK with that month's own factor. */
-export function monthToReal(row: MonthRow, inflation: number): MonthRow {
+function monthToReal(row: MonthRow, inflation: number): MonthRow {
   const f = (v: number) => toReal(v, row.month, inflation)
   return {
     month: row.month,

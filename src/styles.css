@@ -266,7 +266,7 @@ button {
 }
 
 .warnings li.warning {
-  border-left-color: #e08a00;
+  border-left-color: #b36b00;
 }
 
 .table-wrap {
@@ -525,11 +525,11 @@ table.break-even {
 }
 
 .break-even td.win {
-  background: color-mix(in srgb, var(--win) calc(15% + var(--i) * 70%), transparent);
+  background: color-mix(in srgb, var(--win) calc(10% + var(--i) * 45%), transparent);
 }
 
 .break-even td.lose {
-  background: color-mix(in srgb, var(--lose) calc(15% + var(--i) * 70%), transparent);
+  background: color-mix(in srgb, var(--lose) calc(10% + var(--i) * 45%), transparent);
 }
 
 .break-even td.neutral {
@@ -640,4 +640,10 @@ table.break-even {
 .share-manual input {
   box-sizing: border-box;
   width: 100%;
+}
+
+/* Visible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }

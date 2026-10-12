@@ -24,7 +24,7 @@ Kalkulačka offsetové hypotéky, která porovná offset s klasickou hypotékou,
 - [x] [08 – UI: grafy](08-ui-grafy.md)
 - [x] [09 – UI: splátkový kalendář](09-ui-splatkovy-kalendar.md)
 - [x] [10 – Sdílení odkazem](10-sdileni-odkazem.md)
-- [ ] [11 – Dokončení MVP](11-dokonceni-mvp.md)
+- [x] [11 – Dokončení MVP](11-dokonceni-mvp.md)
 
 Další verze jsou v [backlogu](backlog.md). Na ty se sahá až po dokončení MVP a se souhlasem uživatele.
 

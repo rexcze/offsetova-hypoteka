@@ -34,8 +34,10 @@ export default function App() {
     <main>
       <h1>Kalkulačka offsetové hypotéky</h1>
       <p className="lead">
-        Porovná offsetovou hypotéku s klasickou hypotékou, spořicími účty a mimořádnými splátkami. Výchozí
-        hodnoty jsou jen ilustrační. Všechno se počítá ve vašem prohlížeči, nic se neodesílá.
+        Offsetová hypotéka je úvěr, u kterého se úspory na přidruženém účtu odečítají od dluhu, z něhož se
+        počítají úroky, a peníze přitom zůstávají vaše. Kalkulačka porovná, co se vám za několik let vyplatí
+        víc: offset, klasická hypotéka se spořicími účty, nebo klasická hypotéka s mimořádnými splátkami.
+        Výchozí hodnoty jsou ilustrační a všechno se počítá ve vašem prohlížeči.
       </p>
       {state.linkFailed && (
         <p className="hint" role="status">

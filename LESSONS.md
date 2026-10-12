@@ -40,3 +40,11 @@ Co dělat: po formátování zkontrolovat `npm run lint`; pokud se to stane, esc
 Osa úspor jde od 0 do max(2 · úspory, úvěr / 2), u výchozích vstupů tedy do 2 000 000 Kč s krokem 200 000 Kč. Úspory 300 000 Kč leží přesně mezi dvěma sloupci a zvýrazní se ten vyšší. Zvýraznění proto říká „nejblíž vašemu zadání“ a přesná čísla jsou v textu pod mřížkou.
 Co dělat: kdyby se mřížka měla zpřesnit, měnit osu ve specifikaci (oddíl 6), ne v UI.
 
+**Skrytý panel prohlížeče zpomaluje `requestAnimationFrame` na 1 s, takže měření odezvy UI s ním lže.**
+Při měření odezvy formuláře při horizontu 30 let vycházelo 1000 ms na změnu. Stránka měla `visibilityState: hidden` a prohlížeč omezil snímky. Přes `MessageChannel` vyšlo 16 až 32 ms a žádný dlouhý úkol.
+Co dělat: odezvu měřit bez `requestAnimationFrame` (zpráva přes `MessageChannel`, `PerformanceObserver` pro dlouhé úkoly) a před závěrem zkontrolovat `document.visibilityState`.
+
+**Kontrast textu v nejsytějších buňkách mřížky nestačil, přitom nikdo na první pohled nic nepoznal.**
+Výpočet kontrastu ukázal 4,25:1 ve světlém a 2,5:1 v tmavém režimu pro text na buňkách s 85% sytostí. Po omezení sytosti na 55 % je to nejméně 4,7:1.
+Co dělat: u barev s proměnnou sytostí kontrast spočítat (skriptem), ne odhadovat okem. Vite šablona také dodala výchozí favicon, který je potřeba vyměnit.
+

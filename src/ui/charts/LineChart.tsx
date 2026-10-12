@@ -24,7 +24,7 @@ interface Props {
 }
 
 /** Line style per scenario, so lines differ by more than colour. */
-export const DASH: Record<ScenarioId, string | undefined> = {
+const DASH: Record<ScenarioId, string | undefined> = {
   A: '1 4',
   B: undefined,
   C: '7 4',
