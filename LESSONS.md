@@ -48,3 +48,11 @@ Co dělat: odezvu měřit bez `requestAnimationFrame` (zpráva přes `MessageCha
 Výpočet kontrastu ukázal 4,25:1 ve světlém a 2,5:1 v tmavém režimu pro text na buňkách s 85% sytostí. Po omezení sytosti na 55 % je to nejméně 4,7:1.
 Co dělat: u barev s proměnnou sytostí kontrast spočítat (skriptem), ne odhadovat okem. Vite šablona také dodala výchozí favicon, který je potřeba vyměnit.
 
+**Příkaz `shadcn add` napsal do komponent import z cizího npm balíčku `cn` místo z vlastního `src/lib/utils.ts`.**
+Po ručně napsaném `components.json` CLI do všech 13 komponent vložilo `import { cn } from "cn"` a přidalo do `package.json` závislost `cn`, což je nesouvisející balíček. TypeScript to přijal, protože balíček existuje.
+Co dělat: po `shadcn add` projít `git diff package.json` i importy v `src/components/ui/`, špatný balíček odinstalovat a importy přepsat na `@/lib/utils`. Ověřit i ostatní nově přidané závislosti.
+
+**Starý CSS a Tailwind spolu nejdou bez kaskádových vrstev a přejmenování proměnných.**
+Starý `styles.css` používal `--muted` a `--accent` jako barvy textu, shadcn je používá jako světlé pozadí. Nevrstvené staré pravidlo by navíc přebilo utility třídy nových tlačítek a Tailwind preflight smazal odrážky seznamů a `display` u `svg`.
+Co dělat: staré styly dát do vrstvy `legacy` (pořadí `theme, base, legacy, components, utilities`), jejich proměnné přejmenovat na `--legacy-*` a navázat na nový motiv, tmavý režim řídit třídou `dark` místo `prefers-color-scheme`. Při jednosloupcové mřížce vždy `grid-cols-[minmax(0,1fr)]`, jinak se sloupec roztáhne podle širokých tabulek (na mobilu stránka 1304 px).
+

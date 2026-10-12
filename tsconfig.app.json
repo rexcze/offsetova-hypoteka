@@ -23,7 +23,8 @@
     "noFallthroughCasesInSwitch": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": { "@/*": ["./src/*"] }
   },
   "include": ["src"]
 }

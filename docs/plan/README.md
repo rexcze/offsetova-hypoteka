@@ -30,7 +30,7 @@ Kalkulačka offsetové hypotéky, která porovná offset s klasickou hypotékou,
 
 Vizuální vzor je [náhled](../design/nahled.html), styl schválil uživatel. Stack: Tailwind CSS + shadcn/ui. Výpočty (`src/engine/`) se nemění.
 
-- [ ] [12 – Vizuální základ](12-redesign-vizualni-zaklad.md)
+- [x] [12 – Vizuální základ](12-redesign-vizualni-zaklad.md)
 - [ ] [13 – Stav formuláře pro jednoduché zadávání](13-redesign-model-formulare.md)
 - [ ] [14 – Nový formulář](14-redesign-formular.md)
 - [ ] [15 – Nové výsledky](15-redesign-vysledky.md)

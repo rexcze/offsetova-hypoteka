@@ -1,0 +1,591 @@
+/*
+ * Old (pre-redesign) styles. They live in the `legacy` cascade layer, below Tailwind's `components` and
+ * `utilities`, so new utility classes always win. Steps 14-17 replace the old markup, step 17 deletes this file.
+ * The old colour variables are aliased to the new theme, so light and dark mode follow the `dark` class.
+ */
+:root {
+  --legacy-bg: var(--background);
+  --legacy-text: var(--foreground);
+  --legacy-muted: var(--muted-foreground);
+  --legacy-accent: var(--primary);
+  --c-a: #5f6673;
+  --c-b: #0072b2;
+  --c-c: #b5468a;
+  --c-d: #00875f;
+  --win: #0072b2;
+  --lose: #d55e00;
+}
+
+.dark {
+  --c-a: #a3aab8;
+  --c-b: #56b4e9;
+  --c-c: #e58fc0;
+  --c-d: #2fd0a0;
+  --win: #56b4e9;
+  --lose: #f08a3c;
+}
+
+/* Tailwind's preflight removes some browser defaults the old markup relied on. */
+.why ul,
+.assumptions ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+.legend svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.results h2 {
+  margin: 1rem 0 0.5rem;
+}
+
+.lead {
+  color: var(--legacy-muted);
+}
+
+fieldset {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--legacy-muted) 40%, transparent);
+  border-radius: 0.5rem;
+  min-width: 0;
+}
+
+legend {
+  font-weight: 600;
+  padding: 0 0.4rem;
+}
+
+.field {
+  margin-top: 0.75rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.field.check label {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-start;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type='text']:not([data-slot]),
+select:not([data-slot]) {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  color: inherit;
+  background: var(--legacy-bg);
+  border: 1px solid var(--legacy-muted);
+  border-radius: 0.3rem;
+}
+
+input[aria-invalid='true'] {
+  border-color: #c62828;
+  outline: 1px solid #c62828;
+}
+
+.unit {
+  white-space: nowrap;
+  color: var(--legacy-muted);
+  font-size: 0.9rem;
+}
+
+small {
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.hint,
+.derived {
+  color: var(--legacy-muted);
+}
+
+.error {
+  color: #c62828;
+}
+
+.dark .error {
+  color: #ff8a80;
+}
+
+.dark input[aria-invalid='true'] {
+  border-color: #ff8a80;
+  outline-color: #ff8a80;
+}
+
+button:not([data-slot]) {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--legacy-muted);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.account {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem 0.75rem;
+  border: 1px dashed var(--legacy-muted);
+  border-radius: 0.4rem;
+}
+
+.account-head {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.account-head .field {
+  flex: 1;
+}
+
+.tier {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: start;
+  margin-top: 0.5rem;
+}
+
+.tier .field {
+  margin-top: 0;
+}
+
+.tier-label {
+  padding-top: 0.45rem;
+}
+
+.advanced {
+  margin-bottom: 1rem;
+}
+
+.advanced summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.banner {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #c62828;
+  border-radius: 0.4rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.card {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid color-mix(in srgb, var(--legacy-muted) 40%, transparent);
+  border-radius: 0.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.verdict {
+  border-color: var(--legacy-accent);
+}
+
+.verdict p {
+  margin: 0.4rem 0;
+}
+
+.results h2 {
+  font-size: 1.2rem;
+}
+
+.warnings {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.warnings li {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 4px solid var(--legacy-muted);
+  border-radius: 0.3rem;
+  background: color-mix(in srgb, var(--legacy-muted) 12%, transparent);
+}
+
+.warnings li.warning {
+  border-left-color: #b36b00;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+table.scenarios {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.scenarios th,
+.scenarios td {
+  padding: 0.4rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid color-mix(in srgb, var(--legacy-muted) 30%, transparent);
+  vertical-align: top;
+}
+
+.scenarios th:first-child {
+  text-align: left;
+}
+
+.scenarios tr.winner {
+  background: color-mix(in srgb, var(--legacy-accent) 14%, transparent);
+}
+
+.badge {
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--legacy-bg);
+  background: var(--legacy-accent);
+  border-radius: 0.6rem;
+}
+
+.assumptions {
+  margin-bottom: 1rem;
+}
+
+.assumptions summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Narrow screens: every scenario becomes a card instead of a wide table row. */
+@media (max-width: 55.99rem) {
+  .scenarios thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .scenarios,
+  .scenarios tbody,
+  .scenarios tr,
+  .scenarios th,
+  .scenarios td {
+    display: block;
+  }
+
+  .scenarios tr {
+    margin-bottom: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--legacy-muted) 40%, transparent);
+    border-radius: 0.4rem;
+  }
+
+  .scenarios th,
+  .scenarios td {
+    border-bottom: none;
+  }
+
+  .scenarios td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .scenarios td::before {
+    content: attr(data-label);
+    text-align: left;
+    color: var(--legacy-muted);
+  }
+}
+
+/* Scenario colours are the same in the table, legends and charts. */
+.sc-A {
+  --sc: var(--c-a);
+}
+
+.sc-B {
+  --sc: var(--c-b);
+}
+
+.sc-C {
+  --sc: var(--c-c);
+}
+
+.sc-D {
+  --sc: var(--c-d);
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.15rem;
+  border-radius: 0.15rem;
+  background: var(--sc);
+}
+
+.chart-section {
+  margin-bottom: 1.5rem;
+}
+
+.chart {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.chart-svg {
+  display: block;
+  max-width: 100%;
+  touch-action: pan-y;
+}
+
+.chart-svg .line {
+  stroke: var(--sc);
+  stroke-width: 2.5;
+}
+
+.legend .line {
+  stroke: var(--sc);
+  stroke-width: 2.5;
+}
+
+.chart-svg .dot {
+  fill: var(--sc);
+  stroke: var(--legacy-bg);
+  stroke-width: 1.5;
+}
+
+.chart-svg .grid {
+  stroke: color-mix(in srgb, var(--legacy-muted) 30%, transparent);
+}
+
+.chart-svg .zero {
+  stroke: var(--legacy-muted);
+  stroke-width: 1.5;
+}
+
+.chart-svg .tick {
+  fill: var(--legacy-muted);
+  font-size: 11px;
+}
+
+.chart-svg .marker {
+  stroke: var(--legacy-muted);
+  stroke-dasharray: 4 3;
+}
+
+.chart-svg .marker-label {
+  fill: var(--legacy-text);
+  font-size: 11px;
+}
+
+.chart-svg .crosshair {
+  stroke: var(--legacy-muted);
+}
+
+.tooltip {
+  position: absolute;
+  top: 2.5rem;
+  z-index: 1;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  pointer-events: none;
+  background: var(--legacy-bg);
+  border: 1px solid var(--legacy-muted);
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
+  max-width: 16rem;
+}
+
+.tooltip .swatch {
+  background: var(--sc);
+}
+
+table.data {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.data th,
+.data td {
+  padding: 0.25rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid color-mix(in srgb, var(--legacy-muted) 30%, transparent);
+  white-space: nowrap;
+}
+
+.data th:first-child {
+  text-align: left;
+}
+
+table.break-even {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  table-layout: fixed;
+  font-size: 0.7rem;
+}
+
+.break-even th {
+  padding: 0;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--legacy-muted);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.break-even th:first-child {
+  width: 4.2rem;
+  text-align: left;
+}
+
+.break-even th.corner {
+  font-size: 0.6rem;
+  white-space: normal;
+}
+
+.break-even td {
+  height: 1.7rem;
+  padding: 0;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.break-even td.win {
+  background: color-mix(in srgb, var(--win) calc(10% + var(--i) * 45%), transparent);
+}
+
+.break-even td.lose {
+  background: color-mix(in srgb, var(--lose) calc(10% + var(--i) * 45%), transparent);
+}
+
+.break-even td.neutral {
+  background: color-mix(in srgb, var(--legacy-muted) 15%, transparent);
+  color: var(--legacy-muted);
+}
+
+.break-even td.current,
+.cell-sample.current {
+  outline: 3px solid var(--legacy-text);
+  outline-offset: -3px;
+}
+
+.break-even td:focus-visible {
+  outline: 2px solid var(--legacy-accent);
+  outline-offset: 1px;
+}
+
+.cell-sample {
+  display: inline-block;
+  width: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0.2rem;
+}
+
+.cell-sample.win {
+  background: color-mix(in srgb, var(--win) 55%, transparent);
+}
+
+.cell-sample.lose {
+  background: color-mix(in srgb, var(--lose) 55%, transparent);
+}
+
+.cell-sample.neutral {
+  background: color-mix(in srgb, var(--legacy-muted) 15%, transparent);
+}
+
+.readout {
+  min-height: 2.6em;
+  margin: 0.5rem 0;
+}
+
+.calendar {
+  margin-bottom: 1rem;
+}
+
+.calendar summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.tabs button {
+  margin: 0;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.tabs button[aria-selected='true'] {
+  font-weight: 600;
+  border-color: var(--sc);
+  border-width: 2px;
+}
+
+.calendar-table .year-row th button {
+  margin: 0;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.8rem;
+}
+
+.calendar-table .month-row {
+  color: var(--legacy-muted);
+}
+
+.calendar-table .month-row th {
+  font-weight: 400;
+  padding-left: 1.4rem;
+}
+
+/* Visible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--legacy-accent);
+  outline-offset: 2px;
+}

@@ -4,7 +4,8 @@ import { validate } from './engine/validate.ts'
 import { InputForm } from './ui/form/InputForm.tsx'
 import { FormContext } from './ui/form/context.ts'
 import { initialState, reducer } from './ui/form/state.ts'
-import { ShareLink } from './ui/ShareLink.tsx'
+import { ShareButton, ShareNote, useShareLink } from './ui/ShareLink.tsx'
+import { ThemeToggle } from './ui/ThemeToggle.tsx'
 import { encodeInputs, readHash } from './ui/share.ts'
 import { Results } from './ui/results/Results.tsx'
 
@@ -28,29 +29,49 @@ export default function App() {
     return () => window.clearTimeout(id)
   }, [state.lastValid])
 
+  const share = useShareLink(state.lastValid)
+
   const hasErrors = Object.keys(errors).length > 0
 
   return (
-    <main>
-      <h1>Kalkulačka offsetové hypotéky</h1>
-      <p className="lead">
-        Offsetová hypotéka je úvěr, u kterého se úspory na přidruženém účtu odečítají od dluhu, z něhož se
-        počítají úroky, a peníze přitom zůstávají vaše. Kalkulačka porovná, co se vám za několik let vyplatí
-        víc: offset, klasická hypotéka se spořicími účty, nebo klasická hypotéka s mimořádnými splátkami.
-        Výchozí hodnoty jsou ilustrační a všechno se počítá ve vašem prohlížeči.
-      </p>
-      {state.linkFailed && (
-        <p className="hint" role="status">
-          Odkaz se nepodařilo načíst, použili jsme výchozí hodnoty.
+    <div className="min-h-screen">
+      <header className="border-b bg-card/80 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="grid size-8 place-items-center rounded-lg bg-primary text-sm font-semibold text-primary-foreground"
+            >
+              Kč
+            </span>
+            <h1 className="text-base font-semibold">Kalkulačka offsetové hypotéky</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <ShareButton share={share} />
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-6xl px-4 py-6">
+        <p className="mb-2 max-w-3xl text-muted-foreground">
+          Vyplatí se vám offsetová hypotéka, spořicí účet, nebo mimořádné splátky? Zadejte pár čísel a hned
+          uvidíte rozdíl v korunách. Všechno se počítá ve vašem prohlížeči, nic se neodesílá. Výchozí hodnoty
+          jsou jen ilustrační.
         </p>
-      )}
-      <ShareLink inputs={state.lastValid} />
-      <div className="layout">
-        <FormContext value={{ state, dispatch, errors }}>
-          <InputForm />
-        </FormContext>
-        <Results inputs={state.lastValid} result={result} showReal={state.showReal} hasErrors={hasErrors} />
-      </div>
-    </main>
+        {state.linkFailed && (
+          <p className="mb-2 text-sm text-muted-foreground" role="status">
+            Odkaz se nepodařilo načíst, použili jsme výchozí hodnoty.
+          </p>
+        )}
+        <ShareNote share={share} />
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[380px_minmax(0,1fr)]">
+          <FormContext value={{ state, dispatch, errors }}>
+            <InputForm />
+          </FormContext>
+          <Results inputs={state.lastValid} result={result} showReal={state.showReal} hasErrors={hasErrors} />
+        </div>
+      </main>
+    </div>
   )
 }

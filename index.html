@@ -20,6 +20,17 @@
     <meta property="og:url" content="https://rexcze.github.io/offsetova-hypoteka/" />
   </head>
   <body>
+    <script>
+      // Set the theme before the first paint so the page does not flash. Storage may be blocked.
+      try {
+        var stored = null
+        try {
+          stored = localStorage.getItem('theme')
+        } catch (e) {}
+        var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+        if (dark) document.documentElement.classList.add('dark')
+      } catch (e) {}
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

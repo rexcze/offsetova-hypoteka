@@ -10,15 +10,15 @@ Redesign navazuje na hotové MVP (kroky 01–11). Vizuální vzor je [docs/desig
 
 ## Úkoly
 
-- [ ] Přidej Tailwind CSS v4 s oficiálním pluginem pro Vite (`tailwindcss`, `@tailwindcss/vite`). Ověř aktuální postup v dokumentaci Tailwindu, nehádej.
-- [ ] Inicializuj shadcn/ui pro Vite + React + TypeScript (`components.json`, alias `@/` na `src/` v `tsconfig.app.json` i `vite.config.ts`, pomocná funkce `cn` v `src/lib/utils.ts`). Komponenty se kopírují do `src/components/ui/`, takže projekt na nich nezávisí za běhu. Instalace potřebuje síť jen při přidávání komponent.
-- [ ] Přidej komponenty, které budou potřeba: `button`, `card`, `input`, `label`, `slider`, `select`, `checkbox`, `switch`, `accordion`, `tabs`, `tooltip`, `badge`, `alert`. Ostatní přidávej až v krocích, které je potřebují.
-- [ ] Motiv v `src/styles.css` jako CSS proměnné (barvy shadcn: `--background`, `--foreground`, `--card`, `--primary`, `--muted`, `--border`, `--ring`, `--radius`). Světlý a tmavý režim, tmavý přes třídu `dark` na `<html>`. Barvu primární modrou a neutrální šedou vezmi z náhledu (modrá 600 / šedá zinc).
-- [ ] Barvy scénářů jako proměnné `--scenario-a`, `--scenario-b`, `--scenario-c`, `--scenario-d` (A šedá, B modrá, C zelená, D fialová, jako v náhledu), ve světlém i tmavém režimu s dostatečným kontrastem. Používat je budou kroky 15 a 16.
-- [ ] Přepínač tmavého režimu v hlavičce: výchozí podle `prefers-color-scheme`, ruční volba se pamatuje v `localStorage` pod klíčem `theme` (jen volba režimu, nic jiného). Čtení i zápis obal `try/catch`, aplikace musí fungovat i bez úložiště. Nastavení třídy `dark` proveď před prvním vykreslením (malý skript v `index.html`), ať stránka nebliká.
-- [ ] Nová hlavička (název s ikonou, tlačítko „Zkopírovat odkaz“ přesunuté z `ShareLink`, přepínač režimu) a rozvržení stránky: na široké obrazovce dva sloupce (formulář 380 px, výsledky zbytek), na mobilu pod sebou, maximální šířka 72 rem, okraj aspoň 16 px.
-- [ ] Úvodní text přepiš do kratší podoby podle náhledu („Vyplatí se vám offsetová hypotéka, spořicí účet, nebo mimořádné splátky? …“).
-- [ ] Písmo systémové (žádné externí fonty), aby se za běhu nestahovalo nic zvenku.
+- [x] Přidej Tailwind CSS v4 s oficiálním pluginem pro Vite (`tailwindcss`, `@tailwindcss/vite`). Ověř aktuální postup v dokumentaci Tailwindu, nehádej.
+- [x] Inicializuj shadcn/ui pro Vite + React + TypeScript (`components.json` napsaný ručně, aby CLI nepřepsalo CSS a nepřidalo fonty, alias `@/` na `src/` v `tsconfig.app.json` i `vite.config.ts`, pomocná funkce `cn` v `src/lib/utils.ts`). Komponenty se kopírují do `src/components/ui/`, takže projekt na nich nezávisí za běhu. Instalace potřebuje síť jen při přidávání komponent.
+- [x] Přidej komponenty, které budou potřeba: `button`, `card`, `input`, `label`, `slider`, `select`, `checkbox`, `switch`, `accordion`, `tabs`, `tooltip`, `badge`, `alert`. Ostatní přidávej až v krocích, které je potřebují.
+- [x] Motiv v `src/styles.css` jako CSS proměnné (barvy shadcn: `--background`, `--foreground`, `--card`, `--primary`, `--muted`, `--border`, `--ring`, `--radius`). Světlý a tmavý režim, tmavý přes třídu `dark` na `<html>`. Barvu primární modrou a neutrální šedou vezmi z náhledu (modrá 600 / šedá zinc).
+- [x] Barvy scénářů jako proměnné `--scenario-a`, `--scenario-b`, `--scenario-c`, `--scenario-d` (A šedá, B modrá, C zelená, D fialová, jako v náhledu), ve světlém i tmavém režimu s dostatečným kontrastem. Používat je budou kroky 15 a 16.
+- [x] Přepínač tmavého režimu v hlavičce: výchozí podle `prefers-color-scheme`, ruční volba se pamatuje v `localStorage` pod klíčem `theme` (jen volba režimu, nic jiného). Čtení i zápis obal `try/catch`, aplikace musí fungovat i bez úložiště. Nastavení třídy `dark` proveď před prvním vykreslením (malý skript v `index.html`), ať stránka nebliká.
+- [x] Nová hlavička (název s ikonou, tlačítko „Zkopírovat odkaz“ přesunuté z `ShareLink`, přepínač režimu) a rozvržení stránky: na široké obrazovce dva sloupce (formulář 380 px, výsledky zbytek), na mobilu pod sebou, maximální šířka 72 rem, okraj aspoň 16 px.
+- [x] Úvodní text přepiš do kratší podoby podle náhledu („Vyplatí se vám offsetová hypotéka, spořicí účet, nebo mimořádné splátky? …“).
+- [x] Písmo systémové (žádné externí fonty), aby se za běhu nestahovalo nic zvenku.
 
 ## Testy
 
