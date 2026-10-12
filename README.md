@@ -2,6 +2,8 @@
 
 Veřejná webová kalkulačka, která porovná offsetovou hypotéku s klasickou hypotékou, se spořicími účty a s mimořádnými splátkami. Běží jen v prohlížeči, žádná data se neodesílají.
 
+Aplikace běží na https://rexcze.github.io/offsetova-hypoteka/.
+
 Přesná pravidla výpočtu jsou ve [specifikaci](docs/specifikace.md), plán prací v [docs/plan](docs/plan/README.md).
 
 ## Příkazy
