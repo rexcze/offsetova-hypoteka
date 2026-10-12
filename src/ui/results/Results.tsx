@@ -5,6 +5,7 @@ import { AdvantageChart } from '../charts/AdvantageChart.tsx'
 import { BreakEvenGridView } from '../charts/BreakEvenGridView.tsx'
 import { formatAfterYears, formatCzk, formatPercent, formatYears } from '../format.ts'
 import { SCENARIO_LABELS } from '../labels.ts'
+import { Calendar } from './Calendar.tsx'
 import { warningText } from './warningText.ts'
 
 interface Props {
@@ -166,6 +167,8 @@ export function Results({ inputs, result, showReal, hasErrors }: Props) {
           )}
         </ul>
       </div>
+
+      <Calendar result={result} inflation={inputs.inflation} showReal={showReal} />
 
       <details className="assumptions">
         <summary>Předpoklady a zjednodušení</summary>

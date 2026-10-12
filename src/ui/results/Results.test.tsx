@@ -33,3 +33,17 @@ test('explanation panel and disclaimer are shown', () => {
   expect(screen.getByText(/Každá koruna na offsetu vám ušetří 5,19/)).toBeTruthy()
   expect(screen.getByText(/nejde o finanční poradenství/)).toBeTruthy()
 })
+
+test('detailed course: tabs switch scenarios and years expand into months', () => {
+  render(<App />)
+  expect(screen.getByRole('tab', { name: /B: Offsetová hypotéka/ }).getAttribute('aria-selected')).toBe(
+    'true',
+  )
+  expect(screen.getByText('Průměrně započteno')).toBeTruthy()
+  fireEvent.click(screen.getByRole('tab', { name: /A: Klasická hypotéka, peníze/ }))
+  expect(screen.queryByText('Průměrně započteno')).toBeNull()
+  fireEvent.click(screen.getByRole('button', { name: 'Rok 1, zobrazit měsíce' }))
+  expect(screen.getByText('měsíc 12')).toBeTruthy()
+  fireEvent.click(screen.getByRole('button', { name: 'Rok 1, skrýt měsíce' }))
+  expect(screen.queryByText('měsíc 12')).toBeNull()
+})
